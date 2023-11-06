@@ -10,13 +10,14 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import umc.BackDaBang.domain.common.BaseEntity;
 
 @Entity
 @Getter
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class FoodType {
+public class FoodType extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,6 +25,6 @@ public class FoodType {
     @Column(nullable = false, length = 20)
     private String name;
 
-    @Column(nullable = true, length = 20)
+    @Column(length = 20)
     private String detail;
 }

@@ -6,44 +6,43 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import java.time.LocalDate;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+
+import lombok.*;
+import umc.BackDaBang.domain.common.BaseEntity;
+import umc.BackDaBang.domain.enums.Gender;
+import umc.BackDaBang.domain.enums.SocialType;
 
 @Entity
 @Getter
+@Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class Member {
+public class Member extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 255)
+    @Column(nullable = false)
     private String email;
 
-    @Column(nullable = false, length = 10)
+    @Column(nullable = false)
     private SocialType socialType;
 
     @Column(nullable = false, length = 20)
     private String name;
 
-    @Column(nullable = true, length = 10)
+    @Column(nullable = false)
     private Gender gender;
 
     @Column(nullable = false)
     private LocalDate birthday;
 
-    @Column(nullable = false, length = 255)
+    @Column(nullable = false)
     private String address;
 
-    @Column(nullable = true, length = 13)
+    @Column(length = 13)
     private String phoneNumber;
 
-    @Column(nullable = true)
     private Integer point;
-
-
 }

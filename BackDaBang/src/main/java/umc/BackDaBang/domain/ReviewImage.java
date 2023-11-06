@@ -1,9 +1,8 @@
-package umc.BackDaBang.domain.mapping;
+package umc.BackDaBang.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
-import umc.BackDaBang.domain.Member;
-import umc.BackDaBang.domain.Mission;
+import umc.BackDaBang.domain.Review;
 import umc.BackDaBang.domain.common.BaseEntity;
 
 @Entity
@@ -11,20 +10,15 @@ import umc.BackDaBang.domain.common.BaseEntity;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class MemberMission extends BaseEntity {
-
+public class ReviewImage extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
-    private Boolean isSuccess;
+    private String url;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
-    private Member member;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn
-    private Mission mission;
+    private Review review;
 }

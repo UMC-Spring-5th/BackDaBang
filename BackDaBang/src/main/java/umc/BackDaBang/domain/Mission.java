@@ -2,6 +2,7 @@ package umc.BackDaBang.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import umc.BackDaBang.domain.common.BaseEntity;
 
 import java.time.LocalDateTime;
 
@@ -10,15 +11,11 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class Mission {
+public class Mission extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-  /*  @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "store_id")
-    private Store store;*/
 
     @Column(nullable = false, length = 30)
     private String title;
@@ -35,4 +32,7 @@ public class Mission {
     @Column(nullable = false, length = 20)
     private String authorizationCode;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn
+    private Store store;
 }

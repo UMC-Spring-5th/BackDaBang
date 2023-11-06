@@ -1,6 +1,5 @@
-package umc.BackDaBang.domain.mapping;
+package umc.BackDaBang.domain;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -13,25 +12,24 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import umc.BackDaBang.domain.Inquiry;
+import umc.BackDaBang.domain.common.BaseEntity;
 
 @Entity
 @Builder
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class InquiryAlarm {
+public class InquiryAlarm extends BaseEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "inquiry_id")
-    private Inquiry inquiry;
-
-    @Column(nullable = true, length = 255)
     private String content;
 
-    @Column(nullable = true)
-    private Boolean check;
+    private Boolean isChecked;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn
+    private Inquiry inquiry;
 }

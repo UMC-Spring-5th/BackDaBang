@@ -1,4 +1,4 @@
-package umc.BackDaBang.domain;
+package umc.BackDaBang.domain.enums;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

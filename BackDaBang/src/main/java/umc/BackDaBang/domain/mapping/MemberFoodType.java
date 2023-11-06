@@ -3,7 +3,6 @@ package umc.BackDaBang.domain.mapping;
 import jakarta.persistence.*;
 import lombok.*;
 import umc.BackDaBang.domain.Member;
-import umc.BackDaBang.domain.Mission;
 import umc.BackDaBang.domain.common.BaseEntity;
 
 @Entity
@@ -11,14 +10,10 @@ import umc.BackDaBang.domain.common.BaseEntity;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class MemberMission extends BaseEntity {
-
+public class MemberFoodType extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(nullable = false)
-    private Boolean isSuccess;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
@@ -26,5 +21,5 @@ public class MemberMission extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
-    private Mission mission;
+    private MemberFoodType memberFoodType;
 }

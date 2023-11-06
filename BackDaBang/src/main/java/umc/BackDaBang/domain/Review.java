@@ -21,11 +21,11 @@ public class Review extends BaseEntity {
     @Column(nullable = false)
     private Double rating;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn
-//    private Member member;
-//
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn
-//    private Store store;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn
+    private Member member;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn
+    private Store store;
 }

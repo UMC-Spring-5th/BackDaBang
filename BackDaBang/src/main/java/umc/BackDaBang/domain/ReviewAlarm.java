@@ -1,8 +1,9 @@
-package umc.BackDaBang.domain.mapping;
+package umc.BackDaBang.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
 import umc.BackDaBang.domain.common.BaseEntity;
+import umc.BackDaBang.domain.mapping.MemberMission;
 
 @Entity
 @Builder
@@ -17,8 +18,8 @@ public class ReviewAlarm extends BaseEntity {
 
     private Boolean isChecked;
 
-//    @OneToOne(fetch = FetchType.LAZY)
-//    @JoinColumn
-//    private MemberMisison memberMission;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn
+    private MemberMission memberMission;
 
 }
