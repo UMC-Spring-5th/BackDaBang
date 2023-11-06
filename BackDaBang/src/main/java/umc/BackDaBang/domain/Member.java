@@ -25,13 +25,13 @@ public class Member {
     private String email;
 
     @Column(nullable = false, length = 10)
-    private Enum socialType;
+    private SocialType socialType;
 
     @Column(nullable = false, length = 20)
     private String name;
 
     @Column(nullable = true, length = 10)
-    private Enum gender;
+    private Gender gender;
 
     @Column(nullable = false)
     private LocalDate birthday;
