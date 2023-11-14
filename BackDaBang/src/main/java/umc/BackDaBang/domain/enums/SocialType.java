@@ -9,6 +9,7 @@ public enum SocialType {
 
     KAKAO,
     GOOGLE,
-    APPLE;
+    APPLE,
+    NONE;
 
 }

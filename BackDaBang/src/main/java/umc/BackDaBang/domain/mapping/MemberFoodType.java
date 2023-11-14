@@ -2,6 +2,7 @@ package umc.BackDaBang.domain.mapping;
 
 import jakarta.persistence.*;
 import lombok.*;
+import umc.BackDaBang.domain.FoodType;
 import umc.BackDaBang.domain.Member;
 import umc.BackDaBang.domain.common.BaseEntity;
 
@@ -21,5 +22,16 @@ public class MemberFoodType extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
-    private MemberFoodType memberFoodType;
+    private FoodType foodType;
+
+    public void setMember(Member member) {
+        if(this.member != null)
+            member.getMemberFoodTypeList().remove(this);
+        this.member = member;
+        member.getMemberFoodTypeList().add(this);
+    }
+
+    public void setFoodType(FoodType foodType) {
+        this.foodType = foodType;
+    }
 }

@@ -17,6 +17,8 @@ public enum ErrorStatus implements BaseErrorCode {
     // Member Error
     MEMBER_NOT_FOUND(HttpStatus.BAD_REQUEST, "MEMBER4001", "사용자가 없습니다."),
 
+    // FoodType Error
+    FOOD_TYPE_NOT_FOUND(HttpStatus.BAD_REQUEST, "FOODTYPE4001", "해당 음식 타입이 없습니다."),
     // Test Error
     TEST_EXCEPTION(HttpStatus.BAD_REQUEST, "TEST4001", "테스트용 예외입니다.")
     ;

@@ -1,16 +1,16 @@
 package umc.BackDaBang.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import lombok.*;
 import umc.BackDaBang.domain.common.BaseEntity;
 import umc.BackDaBang.domain.enums.Gender;
 import umc.BackDaBang.domain.enums.SocialType;
+import umc.BackDaBang.domain.mapping.MemberFoodType;
 
 @Entity
 @Getter
@@ -45,4 +45,7 @@ public class Member extends BaseEntity {
     private String phoneNumber;
 
     private Integer point;
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<MemberFoodType> memberFoodTypeList = new ArrayList<>();
 }
