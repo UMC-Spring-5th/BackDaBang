@@ -43,7 +43,7 @@ public class Member extends BaseEntity {
 
     @Column(length = 13)
     private String phoneNumber;
-
+    
     private Integer point;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)

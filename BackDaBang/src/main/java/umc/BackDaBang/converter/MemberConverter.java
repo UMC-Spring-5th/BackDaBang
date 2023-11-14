@@ -1,8 +1,11 @@
 package umc.BackDaBang.converter;
 
 import umc.BackDaBang.domain.Member;
+import umc.BackDaBang.domain.enums.SocialType;
 import umc.BackDaBang.web.dto.MemberRequestDTO;
 import umc.BackDaBang.web.dto.MemberResponseDTO;
+
+import java.util.ArrayList;
 
 public class MemberConverter {
 
@@ -17,10 +20,12 @@ public class MemberConverter {
         return Member.builder()
                 .email(request.getEmail())
                 .name(request.getName())
+                .socialType(SocialType.NONE)
                 .gender(request.getGender())
                 .birthday(request.getBirthday())
                 .address(request.getAddress())
                 .phoneNumber(request.getPhoneNumber())
+                .memberFoodTypeList(new ArrayList<>())
                 .build();
     }
 }

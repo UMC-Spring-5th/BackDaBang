@@ -36,7 +36,7 @@ public class MemberCommandServiceImpl implements MemberCommandService {
 
         List<MemberFoodType> memberFoodTypes = MemberFoodTypeConverter.toMemberFoodTypeList(foodTypeList);
 
-        memberFoodTypes.forEach(memberFoodType -> {memberFoodType.setMember(newMember);});
+        memberFoodTypes.forEach(memberFoodType -> { memberFoodType.setMember(newMember);});
 
         return memberRepository.save(newMember);
     }
