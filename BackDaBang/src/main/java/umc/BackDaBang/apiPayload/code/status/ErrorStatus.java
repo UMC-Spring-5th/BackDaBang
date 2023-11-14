@@ -22,11 +22,12 @@ public enum ErrorStatus implements BaseErrorCode {
 
     //store 관련 에러
     STORE_NOT_FOUND(HttpStatus.NOT_FOUND, "STORE4001", "가게가 없습니다."),
-
+    //FOOD TYPE 관련 에러
+    FOOD_TYPE_NOT_FOUND(HttpStatus.NOT_FOUND, "FOODTYPE4001", "해당 음식종류가 없습니다."),
     // For test
     TEMP_EXCEPTION(HttpStatus.BAD_REQUEST, "TEMP4001", "이거는 테스트");
 
-
+    
     private final HttpStatus httpStatus;
     private final String code;
     private final String message;
