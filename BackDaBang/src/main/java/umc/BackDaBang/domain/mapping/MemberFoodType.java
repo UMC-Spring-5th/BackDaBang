@@ -30,8 +30,4 @@ public class MemberFoodType extends BaseEntity {
         this.member = member;
         member.getMemberFoodTypeList().add(this);
     }
-
-    public void setFoodType(FoodType foodType) {
-        this.foodType = foodType;
-    }
 }

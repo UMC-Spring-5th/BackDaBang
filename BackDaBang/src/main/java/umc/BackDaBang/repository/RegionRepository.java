@@ -1,9 +1,9 @@
 package umc.BackDaBang.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import umc.BackDaBang.domain.FoodType;
+import umc.BackDaBang.domain.Region;
 
 import java.util.Optional;
 
-public interface FoodTypeRepository extends JpaRepository<FoodType, Long> {
+public interface RegionRepository extends JpaRepository<Region, Long> {
 }
