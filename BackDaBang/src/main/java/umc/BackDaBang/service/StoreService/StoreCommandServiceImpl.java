@@ -9,9 +9,13 @@ import umc.BackDaBang.apiPayload.exception.handler.StoreHandler;
 import umc.BackDaBang.converter.StoreConverter;
 import umc.BackDaBang.domain.Region;
 import umc.BackDaBang.domain.Store;
+import umc.BackDaBang.domain.common.EntityLoader;
 import umc.BackDaBang.repository.RegionRepository;
 import umc.BackDaBang.repository.StoreRepository;
+import umc.BackDaBang.service.RegionService.RegionCommandService;
 import umc.BackDaBang.web.dto.StoreRequestDTO;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -19,7 +23,7 @@ import umc.BackDaBang.web.dto.StoreRequestDTO;
 public class StoreCommandServiceImpl implements StoreCommandService {
 
     private final StoreRepository storeRepository;
-    private final RegionRepository regionRepository;
+    private final RegionCommandService regionCommandService;
 
     @Override
     @Transactional
@@ -32,10 +36,17 @@ public class StoreCommandServiceImpl implements StoreCommandService {
     @Override
     @Transactional
     public Store updateRegion(StoreRequestDTO.UpdateRegionDTO request) {
-        Store updateStore = storeRepository.findById(request.getStoreId()).orElseThrow(() -> new StoreHandler(ErrorStatus.STORE_NOT_FOUDN));
-        Region region = regionRepository.findById(request.getRegionId()).orElseThrow(() -> new RegionHandler(ErrorStatus.REGION_NOT_FOUND));
+        Store updateStore = loadEntity(request.getStoreId());
+        Region region = regionCommandService.loadEntity(request.getRegionId());
         System.out.println(region.getName());
         updateStore.setRegion(region);
         return updateStore;
+    }
+
+    @Override
+    public Store loadEntity(Long storeId) {
+        Optional<Store> store = storeRepository.findById(storeId);
+        if(store.isEmpty()) throw new StoreHandler(ErrorStatus.STORE_NOT_FOUDN);
+        return store.get();
     }
 }

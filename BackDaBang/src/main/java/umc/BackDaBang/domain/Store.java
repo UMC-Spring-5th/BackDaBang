@@ -5,6 +5,8 @@ import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import umc.BackDaBang.domain.common.BaseEntity;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Builder
@@ -29,6 +31,9 @@ public class Store extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private Region region;
+
+    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
+    private List<Review> reviews;
 
     public void setRegion(Region region) {
         if(this.region != null)
