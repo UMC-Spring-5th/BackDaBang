@@ -3,6 +3,7 @@ package umc.BackDaBang.web.dto;
 import lombok.Getter;
 import umc.BackDaBang.domain.enums.Gender;
 import umc.BackDaBang.domain.enums.SocialType;
+import umc.BackDaBang.validation.annotation.ExistCategories;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -10,8 +11,6 @@ import java.util.List;
 public class MemberRequestDTO {
     @Getter
     public static class JoinDto{
-        private Long id;
-
         private String email;
 
         private SocialType socialType;
@@ -26,8 +25,7 @@ public class MemberRequestDTO {
 
         private String phoneNumber;
 
-        private Integer point;
-
+        @ExistCategories
         List<Long> preferCategory;
 
     }

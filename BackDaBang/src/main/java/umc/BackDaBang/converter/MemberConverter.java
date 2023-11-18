@@ -27,6 +27,8 @@ public class MemberConverter {
                 .name(request.getName())
                 .socialType(request.getSocialType())
                 .birthday(request.getBirthday())
+                .phoneNumber(request.getPhoneNumber())
+                .point(0)
                 .memberFoodTypeList(new ArrayList<>())
                 .build();
     }
