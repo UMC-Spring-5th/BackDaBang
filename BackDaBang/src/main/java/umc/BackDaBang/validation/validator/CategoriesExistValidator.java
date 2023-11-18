@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import umc.BackDaBang.apiPayload.code.status.ErrorStatus;
 import umc.BackDaBang.repository.FoodTypeRepository;
+import umc.BackDaBang.service.FoodTypeService.FoodTypeService;
 import umc.BackDaBang.validation.annotation.ExistCategories;
 
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 public class CategoriesExistValidator implements ConstraintValidator<ExistCategories, List<Long>> {
-    private final FoodTypeRepository foodTypeRepository;
+    private final FoodTypeService foodTypeService;
 
     @Override
     public void initialize(ExistCategories constraintAnnotation) {
@@ -23,7 +24,7 @@ public class CategoriesExistValidator implements ConstraintValidator<ExistCatego
     @Override
     public boolean isValid(List<Long> values, ConstraintValidatorContext context) {
         boolean isValid = values.stream()
-                .allMatch(value ->foodTypeRepository.existsById(value));
+                .allMatch(value -> foodTypeService.existsById(value));
 
         if (!isValid) {
             context.disableDefaultConstraintViolation();
