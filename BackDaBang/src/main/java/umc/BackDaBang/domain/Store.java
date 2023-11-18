@@ -35,6 +35,9 @@ public class Store extends BaseEntity {
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
     private List<Review> reviews;
 
+    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
+    private List<Mission> missions;
+
     public void setRegion(Region region) {
         if(this.region != null)
             region.getStoreList().remove(this);
