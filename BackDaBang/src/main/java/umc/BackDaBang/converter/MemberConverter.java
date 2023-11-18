@@ -2,6 +2,7 @@ package umc.BackDaBang.converter;
 
 import umc.BackDaBang.domain.Member;
 import umc.BackDaBang.domain.enums.SocialType;
+import umc.BackDaBang.domain.mapping.MemberMission;
 import umc.BackDaBang.web.dto.MemberRequestDTO;
 import umc.BackDaBang.web.dto.MemberResponseDTO;
 
@@ -26,6 +27,13 @@ public class MemberConverter {
                 .address(request.getAddress())
                 .phoneNumber(request.getPhoneNumber())
                 .memberFoodTypeList(new ArrayList<>())
+                .build();
+    }
+
+    public static MemberResponseDTO.StartMissionResultDTO toStartMissionResultDTO(MemberMission memberMission) {
+        return MemberResponseDTO.StartMissionResultDTO.builder()
+                .memberMissionId(memberMission.getId())
+                .createdAt(memberMission.getCreatedAt())
                 .build();
     }
 }

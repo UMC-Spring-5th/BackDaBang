@@ -14,6 +14,7 @@ import umc.BackDaBang.domain.common.BaseEntity;
 import umc.BackDaBang.domain.enums.Gender;
 import umc.BackDaBang.domain.enums.SocialType;
 import umc.BackDaBang.domain.mapping.MemberFoodType;
+import umc.BackDaBang.domain.mapping.MemberMission;
 
 @Entity
 @Getter
@@ -54,4 +55,7 @@ public class Member extends BaseEntity {
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<MemberFoodType> memberFoodTypeList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<MemberMission> memberMissionList = new ArrayList<>();
 }

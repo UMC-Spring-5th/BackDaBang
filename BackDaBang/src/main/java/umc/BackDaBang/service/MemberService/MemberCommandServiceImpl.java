@@ -9,12 +9,16 @@ import umc.BackDaBang.apiPayload.exception.handler.FoodTypeHandler;
 import umc.BackDaBang.apiPayload.exception.handler.MemberHandler;
 import umc.BackDaBang.converter.MemberConverter;
 import umc.BackDaBang.converter.MemberFoodTypeConverter;
+import umc.BackDaBang.converter.MemberMissionConverter;
 import umc.BackDaBang.domain.FoodType;
 import umc.BackDaBang.domain.Member;
+import umc.BackDaBang.domain.Mission;
 import umc.BackDaBang.domain.common.EntityLoader;
 import umc.BackDaBang.domain.mapping.MemberFoodType;
+import umc.BackDaBang.domain.mapping.MemberMission;
 import umc.BackDaBang.repository.FoodTypeRepository;
 import umc.BackDaBang.repository.MemberRepository;
+import umc.BackDaBang.service.MissionService.MissionCommandService;
 import umc.BackDaBang.web.dto.MemberRequestDTO;
 
 import java.util.List;
@@ -28,6 +32,7 @@ public class MemberCommandServiceImpl implements MemberCommandService {
 
     private final MemberRepository memberRepository;
     private final FoodTypeRepository foodTypeRepository;
+    private final MissionCommandService missionCommandService;
 
     @Override
     @Transactional
@@ -44,6 +49,20 @@ public class MemberCommandServiceImpl implements MemberCommandService {
 
         return memberRepository.save(newMember);
     }
+
+    @Override
+    @Transactional
+    public MemberMission startMission(Long memberId, Long missionId) {
+        Member member = loadEntity(memberId);
+        Mission mission = missionCommandService.loadEntity(missionId);
+        MemberMission newMemberMission = MemberMissionConverter.toMemberMission(mission);
+
+        newMemberMission.setMember(member);
+
+        return newMemberMission;
+
+    }
+
 
     @Override
     public Member loadEntity(Long memberId) {
