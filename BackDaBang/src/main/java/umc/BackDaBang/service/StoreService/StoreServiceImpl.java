@@ -8,6 +8,7 @@ import umc.BackDaBang.apiPayload.code.status.ErrorStatus;
 import umc.BackDaBang.apiPayload.exception.handler.StoreHandler;
 import umc.BackDaBang.converter.StoreConverter;
 import umc.BackDaBang.domain.Region;
+import umc.BackDaBang.domain.Review;
 import umc.BackDaBang.domain.Store;
 import umc.BackDaBang.repository.StoreRepository;
 import umc.BackDaBang.service.RegionService.RegionService;
@@ -32,13 +33,23 @@ public class StoreServiceImpl implements StoreService {
     @Override
     @Transactional
     public Store enrollRegion(StoreRequestDTO.EnrollRegionDTO request) {
-        Store store = storeRepository.findById(request.getStoreId())
-                .orElseThrow(() -> new StoreHandler(ErrorStatus.STORE_NOT_FOUND));
-
+        Store store = findStoreById(request.getStoreId());
         Region region = regionService.findRegionById(request.getRegionId());
 
         store.setRegion(region);
         return store;
     }
+
+    @Override
+    public Store findStoreById(Long storeId) {
+        return storeRepository.findById(storeId)
+                .orElseThrow(() -> new StoreHandler(ErrorStatus.STORE_NOT_FOUND));
+    }
+
+    @Override
+    public boolean existsById(Long storeId) {
+        return storeRepository.existsById(storeId);
+    }
+
 
 }

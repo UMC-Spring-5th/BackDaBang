@@ -5,4 +5,5 @@ import umc.BackDaBang.web.dto.Member.MemberRequestDTO;
 
 public interface MemberCommandService {
      Member joinMember(MemberRequestDTO.JoinDto request);
+     Member findMemberById(Long memberId);
 }

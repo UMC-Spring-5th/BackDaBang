@@ -1,6 +1,6 @@
 package umc.BackDaBang.converter;
 
-import umc.BackDaBang.domain.Region;
+
 import umc.BackDaBang.domain.Store;
 import umc.BackDaBang.web.dto.Store.StoreRequestDTO;
 import umc.BackDaBang.web.dto.Store.StoreResponseDTO;

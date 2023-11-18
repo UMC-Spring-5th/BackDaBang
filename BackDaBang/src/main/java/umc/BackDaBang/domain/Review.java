@@ -28,4 +28,13 @@ public class Review extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private Store store;
+
+    public void setReview(Member member, Store store) {
+        this.member = member;
+        if(this.store != null) {
+            store.getReviewList().remove(this);
+        }
+        this.store = store;
+        store.getReviewList().add(this);
+    }
 }

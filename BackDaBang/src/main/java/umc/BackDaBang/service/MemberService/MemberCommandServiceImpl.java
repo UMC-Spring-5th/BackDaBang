@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import umc.BackDaBang.apiPayload.code.status.ErrorStatus;
 import umc.BackDaBang.apiPayload.exception.handler.FoodTypeHandler;
+import umc.BackDaBang.apiPayload.exception.handler.MemberHandler;
 import umc.BackDaBang.converter.MemberConverter;
 import umc.BackDaBang.converter.MemberFoodTypeConverter;
 import umc.BackDaBang.domain.FoodType;
@@ -40,5 +41,11 @@ public class MemberCommandServiceImpl implements  MemberCommandService{
 
         memberFoodTypeList.forEach(memberFoodType -> {memberFoodType.setMember(newMember);});
         return memberRepository.save(newMember);
+    }
+
+    @Override
+    public Member findMemberById(Long memberId) {
+        return memberRepository.findById(memberId)
+                .orElseThrow(() -> new MemberHandler(ErrorStatus.MEMBER_NOT_FOUND));
     }
 }
