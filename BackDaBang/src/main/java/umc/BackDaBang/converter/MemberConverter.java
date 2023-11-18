@@ -2,8 +2,8 @@ package umc.BackDaBang.converter;
 
 import umc.BackDaBang.domain.Member;
 import umc.BackDaBang.domain.enums.Gender;
-import umc.BackDaBang.web.dto.MemberRequestDTO;
-import umc.BackDaBang.web.dto.MemberResponseDTO;
+import umc.BackDaBang.web.dto.Member.MemberRequestDTO;
+import umc.BackDaBang.web.dto.Member.MemberResponseDTO;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

@@ -12,7 +12,7 @@ import umc.BackDaBang.domain.Member;
 import umc.BackDaBang.domain.mapping.MemberFoodType;
 import umc.BackDaBang.repository.FoodTypeRepository;
 import umc.BackDaBang.repository.MemberRepository;
-import umc.BackDaBang.web.dto.MemberRequestDTO;
+import umc.BackDaBang.web.dto.Member.MemberRequestDTO;
 
 import java.util.List;
 import java.util.stream.Collectors;

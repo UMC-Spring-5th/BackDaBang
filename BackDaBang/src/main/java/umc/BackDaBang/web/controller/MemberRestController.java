@@ -10,8 +10,8 @@ import umc.BackDaBang.apiPayload.ApiResponse;
 import umc.BackDaBang.converter.MemberConverter;
 import umc.BackDaBang.domain.Member;
 import umc.BackDaBang.service.MemberService.MemberCommandService;
-import umc.BackDaBang.web.dto.MemberRequestDTO;
-import umc.BackDaBang.web.dto.MemberResponseDTO;
+import umc.BackDaBang.web.dto.Member.MemberRequestDTO;
+import umc.BackDaBang.web.dto.Member.MemberResponseDTO;
 
 @RestController
 @RequiredArgsConstructor

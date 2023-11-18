@@ -22,6 +22,9 @@ public enum ErrorStatus implements BaseErrorCode {
 
     //store 관련 에러
     STORE_NOT_FOUND(HttpStatus.NOT_FOUND, "STORE4001", "가게가 없습니다."),
+
+    //region 관련 에러
+    REGION_NOT_FOUND(HttpStatus.NOT_FOUND, "REGION4001","지역을 찾을 수 없습니다."),
     //FOOD TYPE 관련 에러
     FOOD_TYPE_NOT_FOUND(HttpStatus.NOT_FOUND, "FOODTYPE4001", "해당 음식종류가 없습니다."),
     // For test

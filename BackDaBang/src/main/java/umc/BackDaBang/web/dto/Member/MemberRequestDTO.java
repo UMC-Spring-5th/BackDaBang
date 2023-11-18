@@ -1,4 +1,4 @@
-package umc.BackDaBang.web.dto;
+package umc.BackDaBang.web.dto.Member;
 
 import lombok.Getter;
 import umc.BackDaBang.domain.enums.Gender;

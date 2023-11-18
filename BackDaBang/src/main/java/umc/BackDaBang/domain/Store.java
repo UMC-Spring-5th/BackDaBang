@@ -23,9 +23,18 @@ public class Store extends BaseEntity {
     @Column(nullable = false)
     private String address;
 
+
     private Double rating;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn
+    @JoinColumn(name = "region_id")
     private Region region;
+
+    public void setRegion(Region region) {
+        if(this.region != null) {
+            region.getStoreList().remove(this);
+        }
+        this.region = region;
+        region.getStoreList().add(this);
+    }
 }
