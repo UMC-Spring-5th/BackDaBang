@@ -11,6 +11,5 @@ import java.util.Optional;
 public interface StoreQueryService extends EntityLoader<Store, Long> {
     Page<Review> getReviewList(Long storeId, Integer page);
     Page<Review> getReviewListByMember(Long storeId, Long memberId, Integer page);
-
     Page<Mission> getMissionList(Long storeId, Integer page);
 }

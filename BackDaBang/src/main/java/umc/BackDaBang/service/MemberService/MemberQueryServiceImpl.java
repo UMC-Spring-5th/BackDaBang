@@ -18,7 +18,7 @@ public class MemberQueryServiceImpl implements MemberQueryService {
     private final MemberRepository memberRepository;
 
     @Override
-    public List<MemberMission> getMemberMissions(Long memberId, Boolean isSucceed) {
+    public List<MemberMission> getMemberMissionList(Long memberId, Boolean isSucceed) {
         Member member = loadEntity(memberId);
         List<MemberMission> allMemberMissions = member.getMemberMissionList();
         if(isSucceed)

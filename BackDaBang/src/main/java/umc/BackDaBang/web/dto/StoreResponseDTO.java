@@ -24,7 +24,7 @@ public class StoreResponseDTO {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class UpdateRegionResultDTO {
+    public static class UpdateRegionDTO {
         Long storeId;
         String regionName;
     }
@@ -33,8 +33,8 @@ public class StoreResponseDTO {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class GetReviewListDTO {
-        List<GetReviewDTO> reviewList;
+    public static class StoreReviewListDTO {
+        List<StoreReviewDTO> reviewList;
         Integer listSize;
         Integer totalPage;
         Long totalElements;
@@ -47,7 +47,7 @@ public class StoreResponseDTO {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class GetReviewDTO {
+    public static class StoreReviewDTO {
         String nickname;
         Double rating;
         String content;
@@ -58,8 +58,8 @@ public class StoreResponseDTO {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class GetMissionListDTO {
-        List<GetMissionDTO> missionList;
+    public static class StoreMissionListDTO {
+        List<StoreMissionDTO> missionList;
         Integer listSize;
         Integer totalPage;
         Long totalElements;
@@ -71,7 +71,7 @@ public class StoreResponseDTO {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class GetMissionDTO {
+    public static class StoreMissionDTO {
         Long missionId;
         String title;
         String content;

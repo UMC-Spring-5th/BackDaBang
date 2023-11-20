@@ -19,22 +19,22 @@ public class StoreConverter {
                 .build();
     }
 
-    public static StoreResponseDTO.EnrollDTO toEnrollResultDTO(Store store) {
+    public static StoreResponseDTO.EnrollDTO toEnrollDTO(Store store) {
         return StoreResponseDTO.EnrollDTO.builder()
                 .storeId(store.getId())
                 .createdAt(store.getCreatedAt())
                 .build();
     }
 
-    public static StoreResponseDTO.UpdateRegionResultDTO toUpdateRegionResultDTO(Store store) {
-        return StoreResponseDTO.UpdateRegionResultDTO.builder()
+    public static StoreResponseDTO.UpdateRegionDTO toUpdateRegionDTO(Store store) {
+        return StoreResponseDTO.UpdateRegionDTO.builder()
                 .storeId(store.getId())
                 .regionName(store.getRegion().getName())
                 .build();
     }
 
-    public static StoreResponseDTO.GetReviewDTO toGetReviewDTO(Review review) {
-        return StoreResponseDTO.GetReviewDTO.builder()
+    private static StoreResponseDTO.StoreReviewDTO toStoreReviewDTO(Review review) {
+        return StoreResponseDTO.StoreReviewDTO.builder()
                 .nickname(review.getMember().getName())
                 .rating(review.getRating())
                 .content(review.getContent())
@@ -42,14 +42,14 @@ public class StoreConverter {
                 .build();
     }
 
-    public static StoreResponseDTO.GetReviewListDTO toGetReviewListDTO(Page<Review> reviews) {
-        List<StoreResponseDTO.GetReviewDTO> reviewDTOList = reviews.stream()
-                .map(StoreConverter::toGetReviewDTO)
+    public static StoreResponseDTO.StoreReviewListDTO toStoreReviewListDTO(Page<Review> reviews) {
+        List<StoreResponseDTO.StoreReviewDTO> reviewDTOList = reviews.stream()
+                .map(StoreConverter::toStoreReviewDTO)
                 .toList();
 
-        return StoreResponseDTO.GetReviewListDTO.builder()
-                .isLast(reviews.isLast())
+        return StoreResponseDTO.StoreReviewListDTO.builder()
                 .isFirst(reviews.isLast())
+                .isLast(reviews.isLast())
                 .totalPage(reviews.getTotalPages())
                 .totalElements(reviews.getTotalElements())
                 .listSize(reviewDTOList.size())
@@ -57,8 +57,8 @@ public class StoreConverter {
                 .build();
     }
 
-    public static StoreResponseDTO.GetMissionDTO toGetMissionDTO(Mission mission) {
-        return StoreResponseDTO.GetMissionDTO.builder()
+    private static StoreResponseDTO.StoreMissionDTO toStoreMissionDTO(Mission mission) {
+        return StoreResponseDTO.StoreMissionDTO.builder()
                 .missionId(mission.getId())
                 .title(mission.getTitle())
                 .content(mission.getContent())
@@ -68,14 +68,14 @@ public class StoreConverter {
                 .build();
     }
 
-    public static StoreResponseDTO.GetMissionListDTO toGetMissionListDTO(Page<Mission> missions) {
-        List<StoreResponseDTO.GetMissionDTO> missionDTOList = missions.stream()
-                .map(StoreConverter::toGetMissionDTO)
+    public static StoreResponseDTO.StoreMissionListDTO toStoreMissionListDTO(Page<Mission> missions) {
+        List<StoreResponseDTO.StoreMissionDTO> missionDTOList = missions.stream()
+                .map(StoreConverter::toStoreMissionDTO)
                 .toList();
 
-        return StoreResponseDTO.GetMissionListDTO.builder()
-                .isFirst(missions.isLast())
+        return StoreResponseDTO.StoreMissionListDTO.builder()
                 .isFirst(missions.isFirst())
+                .isLast(missions.isLast())
                 .totalElements(missions.getTotalElements())
                 .listSize(missionDTOList.size())
                 .missionList(missionDTOList)

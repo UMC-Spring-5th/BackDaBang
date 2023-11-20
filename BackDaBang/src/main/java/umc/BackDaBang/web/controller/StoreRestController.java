@@ -33,7 +33,7 @@ public class StoreRestController {
     @Operation(summary = "가게 등록 API", description = "새로운 가게를 등록하는 API입니다.")
     public ApiResponse<StoreResponseDTO.EnrollDTO> enrollStore(@RequestBody @Valid StoreRequestDTO.EnrollDTO request) {
         Store store = storeCommandService.enrollStore(request);
-        return ApiResponse.onSuccess(StoreConverter.toEnrollResultDTO(store));
+        return ApiResponse.onSuccess(StoreConverter.toEnrollDTO(store));
     }
 
     @PostMapping("/{storeId}/regions/{regionId}")
@@ -45,7 +45,7 @@ public class StoreRestController {
     public ApiResponse<StoreResponseDTO.UpdateRegionDTO> updateRegion(@PathVariable(name = "storeId") Long storeId,
                                                                       @PathVariable(name = "regionId") Long regionId) {
         Store store = storeCommandService.updateRegion(storeId, regionId);
-        return ApiResponse.onSuccess(StoreConverter.toUpdateRegionResultDTO(store));
+        return ApiResponse.onSuccess(StoreConverter.toUpdateRegionDTO(store));
     }
 
     @GetMapping("/{storeId}/reviews")
@@ -58,7 +58,7 @@ public class StoreRestController {
     public ApiResponse<StoreResponseDTO.StoreReviewListDTO> getStoreReviews(@PathVariable(name = "storeId") Long storeId,
                                                                             @RequestParam(name = "page") Integer page) {
         Page<Review> reviewList = storeQueryService.getReviewList(storeId, page);
-        return ApiResponse.onSuccess(StoreConverter.toGetReviewListDTO(reviewList));
+        return ApiResponse.onSuccess(StoreConverter.toStoreReviewListDTO(reviewList));
     }
 
     @GetMapping("/{storeId}/reviews/member")
@@ -80,7 +80,7 @@ public class StoreRestController {
                                                                                     @RequestParam(name = "memberId") Long memberId,
                                                                                     @RequestParam(name = "page") Integer page) {
         Page<Review> reviewList = storeQueryService.getReviewListByMember(storeId, memberId, page);
-        return ApiResponse.onSuccess(StoreConverter.toGetReviewListDTO(reviewList));
+        return ApiResponse.onSuccess(StoreConverter.toStoreReviewListDTO(reviewList));
     }
 
     @GetMapping("/{storeId}/missions")
@@ -92,6 +92,6 @@ public class StoreRestController {
     public ApiResponse<StoreResponseDTO.StoreMissionListDTO> getMissionListDTOApiResponse(@PathVariable(name = "storeId") Long storeId,
                                                                                           @RequestParam(name = "page") Integer page) {
         Page<Mission> missionList = storeQueryService.getMissionList(storeId, page);
-        return ApiResponse.onSuccess(StoreConverter.toGetMissionListDTO(missionList));
+        return ApiResponse.onSuccess(StoreConverter.toStoreMissionListDTO(missionList));
     }
 }
