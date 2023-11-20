@@ -2,14 +2,12 @@ package umc.BackDaBang.converter;
 
 import umc.BackDaBang.domain.Mission;
 import umc.BackDaBang.web.dto.MissionRequestDTO;
-import umc.BackDaBang.web.dto.MissionResultDTO;
-
-import java.time.LocalDateTime;
+import umc.BackDaBang.web.dto.MissionResponseDTO;
 
 public class MissionConverter {
 
-    public static MissionResultDTO.CreateResultDTO toCreateResultDTO(Mission mission) {
-        return MissionResultDTO.CreateResultDTO.builder()
+    public static MissionResponseDTO.CreateResultDTO toCreateResultDTO(Mission mission) {
+        return MissionResponseDTO.CreateResultDTO.builder()
                 .missionId(mission.getId())
                 .createdAt(mission.getCreatedAt())
                 .build();

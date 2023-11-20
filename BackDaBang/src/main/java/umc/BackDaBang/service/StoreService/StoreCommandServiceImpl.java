@@ -38,7 +38,6 @@ public class StoreCommandServiceImpl implements StoreCommandService {
     public Store updateRegion(StoreRequestDTO.UpdateRegionDTO request) {
         Store updateStore = loadEntity(request.getStoreId());
         Region region = regionCommandService.loadEntity(request.getRegionId());
-        System.out.println(region.getName());
         updateStore.setRegion(region);
         return updateStore;
     }

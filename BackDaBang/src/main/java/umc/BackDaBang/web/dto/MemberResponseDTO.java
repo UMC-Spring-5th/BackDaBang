@@ -26,4 +26,26 @@ public class MemberResponseDTO {
         Long memberMissionId;
         LocalDateTime createdAt;
     }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class MyPageResultDTO {
+        String name;
+        String email;
+        String phoneNumber;
+        Long point;
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class MemberMissionResultDTO {
+        Long memberMissionId;
+        String title;
+        String content;
+        Long point;
+    }
 }

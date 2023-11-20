@@ -8,7 +8,7 @@ import umc.BackDaBang.converter.MissionConverter;
 import umc.BackDaBang.domain.Mission;
 import umc.BackDaBang.service.MissionService.MissionCommandService;
 import umc.BackDaBang.web.dto.MissionRequestDTO;
-import umc.BackDaBang.web.dto.MissionResultDTO;
+import umc.BackDaBang.web.dto.MissionResponseDTO;
 
 @RestController
 @RequiredArgsConstructor
@@ -19,7 +19,7 @@ public class MissionRestController {
     private final MissionCommandService missionCommandService;
 
     @PostMapping("/")
-    public ApiResponse<MissionResultDTO.CreateResultDTO> createMission(@RequestBody MissionRequestDTO.CreateDTO request) {
+    public ApiResponse<MissionResponseDTO.CreateResultDTO> createMission(@RequestBody MissionRequestDTO.CreateDTO request) {
         Mission newMission = missionCommandService.createMission(request);
         return ApiResponse.onSuccess(MissionConverter.toCreateResultDTO(newMission));
     }

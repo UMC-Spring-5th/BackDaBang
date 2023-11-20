@@ -36,4 +36,13 @@ public class MemberConverter {
                 .createdAt(memberMission.getCreatedAt())
                 .build();
     }
+
+    public static MemberResponseDTO.MyPageResultDTO toMyPageResultDTO(Member member) {
+        return MemberResponseDTO.MyPageResultDTO.builder()
+                .name(member.getName())
+                .email(member.getEmail())
+                .phoneNumber(member.getPhoneNumber())
+                .point(member.getPoint())
+                .build();
+    }
 }

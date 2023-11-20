@@ -51,11 +51,11 @@ public class Member extends BaseEntity {
     private String phoneNumber;
 
     @ColumnDefault("0")
-    private Integer point;
+    private Long point;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    private List<MemberFoodType> memberFoodTypeList = new ArrayList<>();
+    private List<MemberFoodType> memberFoodTypeList;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    private List<MemberMission> memberMissionList = new ArrayList<>();
+    private List<MemberMission> memberMissionList;
 }
