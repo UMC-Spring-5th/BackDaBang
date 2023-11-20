@@ -8,10 +8,12 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import umc.BackDaBang.apiPayload.ApiResponse;
 import umc.BackDaBang.converter.StoreConverter;
+import umc.BackDaBang.domain.Review;
 import umc.BackDaBang.domain.Store;
 import umc.BackDaBang.service.StoreService.StoreCommandService;
 import umc.BackDaBang.service.StoreService.StoreQueryService;
@@ -60,8 +62,8 @@ public class StoreRestController {
 
     })
     public ApiResponse<StoreResponseDTO.GetReviewListDTO> getStoreReviews(@PathVariable(name = "storeId") Long storeId,
-                                                                          @RequestBody Integer page) {
-        storeQueryService.getReviewList(storeId, page);
-        return null;
+                                                                          @RequestParam Integer page) {
+        Page<Review> reviewList = storeQueryService.getReviewList(storeId, page);
+        return ApiResponse.onSuccess(StoreConverter.toGetReviewListDTO(reviewList));
     }
 }
