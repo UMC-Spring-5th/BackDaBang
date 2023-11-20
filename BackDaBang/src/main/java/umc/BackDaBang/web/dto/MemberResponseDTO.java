@@ -5,7 +5,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class MemberResponseDTO {
 
@@ -13,7 +15,7 @@ public class MemberResponseDTO {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class SignUpResultDTO {
+    public static class SignUpDTO {
         Long memberId;
         LocalDateTime createdAt;
     }
@@ -22,7 +24,7 @@ public class MemberResponseDTO {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class StartMissionResultDTO {
+    public static class StartMissionDTO {
         Long memberMissionId;
         LocalDateTime createdAt;
     }
@@ -31,7 +33,7 @@ public class MemberResponseDTO {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class MyPageResultDTO {
+    public static class MyPageDTO {
         String name;
         String email;
         String phoneNumber;
@@ -42,10 +44,12 @@ public class MemberResponseDTO {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class MemberMissionResultDTO {
+    public static class MemberMissionDTO {
         Long memberMissionId;
         String title;
         String content;
         Long point;
+        LocalDateTime deadline;
+        LocalDate createdAt;
     }
 }
