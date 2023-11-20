@@ -13,6 +13,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import umc.BackDaBang.apiPayload.ApiResponse;
 import umc.BackDaBang.converter.StoreConverter;
+import umc.BackDaBang.domain.Mission;
 import umc.BackDaBang.domain.Review;
 import umc.BackDaBang.domain.Store;
 import umc.BackDaBang.service.StoreService.StoreCommandService;
@@ -30,7 +31,7 @@ public class StoreRestController {
 
     @PostMapping("/")
     @Operation(summary = "가게 등록  API", description = "새로운 가게를 등록하는 API입니다.")
-    public ApiResponse<StoreResponseDTO.EnrollResultDTO> enrollStore(@RequestBody @Valid StoreRequestDTO.EnrollDTO request) {
+    public ApiResponse<StoreResponseDTO.EnrollDTO> enrollStore(@RequestBody @Valid StoreRequestDTO.EnrollDTO request) {
         Store store = storeCommandService.enrollStore(request);
         return ApiResponse.onSuccess(StoreConverter.toEnrollResultDTO(store));
     }
@@ -41,14 +42,27 @@ public class StoreRestController {
             @Parameter(name = "storeId", description = "가게의 아이디, path variable 입니다."),
             @Parameter(name = "regionId", description = "지역의 아이디, path variable 입니다.")
     })
-    public ApiResponse<StoreResponseDTO.UpdateRegionResultDTO> updateRegion(@PathVariable Long storeId,
-                                                                            @PathVariable Long regionId) {
+    public ApiResponse<StoreResponseDTO.UpdateRegionResultDTO> updateRegion(@PathVariable(name = "storeId") Long storeId,
+                                                                            @PathVariable(name = "regionId") Long regionId) {
         Store store = storeCommandService.updateRegion(storeId, regionId);
         return ApiResponse.onSuccess(StoreConverter.toUpdateRegionResultDTO(store));
     }
 
     @GetMapping("/{storeId}/reviews")
     @Operation(summary = "특정 가게의 리뷰 목록 조회 API", description = "특정 가게의 리뷰들의 목록을 조회하는 API이며, 페이징을 포함합니다. query String 으로 page 번호를 주세요")
+    @Parameters({
+            @Parameter(name = "storeId", description = "가게의 아이디, path variable 입니다."),
+            @Parameter(name = "page", description = "페이지 번호, 0번이 1 페이지 입니다."),
+
+    })
+    public ApiResponse<StoreResponseDTO.GetReviewListDTO> getStoreReviews(@PathVariable(name = "storeId") Long storeId,
+                                                                          @RequestParam(name = "page") Integer page) {
+        Page<Review> reviewList = storeQueryService.getReviewList(storeId, page);
+        return ApiResponse.onSuccess(StoreConverter.toGetReviewListDTO(reviewList));
+    }
+
+    @GetMapping("/{storeId}/reviews/member")
+    @Operation(summary = "특정 가게의 특정 멤버 리뷰 목록 조회 API", description = "특정 가게의 리뷰들 중 특정 멤버의 리뷰 목록을 조회하는 API이며, 페이징을 포함합니다. query String 으로 page 번호를 주세요")
     @ApiResponses({
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "COMMON200",description = "OK, 성공"),
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "AUTH003", description = "access 토큰을 주세요!",content = @Content(schema = @Schema(implementation = ApiResponse.class))),
@@ -58,12 +72,26 @@ public class StoreRestController {
     })
     @Parameters({
             @Parameter(name = "storeId", description = "가게의 아이디, path variable 입니다."),
+            @Parameter(name = "memberId", description = "멤버의 아이디, request paramter 입니다."),
             @Parameter(name = "page", description = "페이지 번호, 0번이 1 페이지 입니다."),
 
     })
-    public ApiResponse<StoreResponseDTO.GetReviewListDTO> getStoreReviews(@PathVariable(name = "storeId") Long storeId,
-                                                                          @RequestParam Integer page) {
-        Page<Review> reviewList = storeQueryService.getReviewList(storeId, page);
+    public ApiResponse<StoreResponseDTO.GetReviewListDTO> getStoreReviewsByMember(@PathVariable(name = "storeId") Long storeId,
+                                                                                  @RequestParam(name = "memberId") Long memberId,
+                                                                                  @RequestParam(name = "page") Integer page) {
+        Page<Review> reviewList = storeQueryService.getReviewListByMember(storeId, memberId, page);
         return ApiResponse.onSuccess(StoreConverter.toGetReviewListDTO(reviewList));
+    }
+
+    @GetMapping("/{storeId}/missions")
+    @Operation(summary = "특정 가게의 미션 목록 조회 API ", description = "특정 가게의 미션들의 목록을 조회하는 API이며, 페이징을 포함합니다. query String 으로 page 번호를 주세요")
+    @Parameters({
+            @Parameter(name = "storeId", description = "가게의 아이디, path variable 입니다."),
+            @Parameter(name = "page", description = "페이지 번호, 0번이 1 페이지 입니다."),
+    })
+    public ApiResponse<StoreResponseDTO.GetMissionListDTO> getMissionListDTOApiResponse(@PathVariable(name = "storeId") Long storeId,
+                                                                                        @RequestParam(name = "page") Integer page) {
+        Page<Mission> missionList = storeQueryService.getMissionList(storeId, page);
+        return ApiResponse.onSuccess(StoreConverter.toGetMissionListDTO(missionList));
     }
 }

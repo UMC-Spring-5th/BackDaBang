@@ -15,7 +15,7 @@ public class StoreResponseDTO {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class EnrollResultDTO {
+    public static class EnrollDTO {
         Long storeId;
         LocalDateTime createdAt;
     }
@@ -51,6 +51,32 @@ public class StoreResponseDTO {
         String nickname;
         Double rating;
         String content;
+        LocalDate createdAt;
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class GetMissionListDTO {
+        List<GetMissionDTO> missionList;
+        Integer listSize;
+        Integer totalPage;
+        Long totalElements;
+        Boolean isFirst;
+        Boolean isLast;
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class GetMissionDTO {
+        Long missionId;
+        String title;
+        String content;
+        Long point;
+        LocalDateTime deadline;
         LocalDate createdAt;
     }
 }
