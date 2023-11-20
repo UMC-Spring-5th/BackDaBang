@@ -57,5 +57,5 @@ public class Member extends BaseEntity {
     private List<MemberFoodType> memberFoodTypeList;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    private List<MemberMission> memberMissionList;
+    private List<MemberMission> memberMissionList = new ArrayList<>();
 }

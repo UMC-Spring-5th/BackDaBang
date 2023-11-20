@@ -31,6 +31,7 @@ public enum ErrorStatus implements BaseErrorCode {
 
     // Misson Error
     MISSION_NOT_FOUND(HttpStatus.BAD_REQUEST, "MISSION4001", "존재하지 않는 미션입니다."),
+    MISSION_DUPLICATE(HttpStatus.BAD_REQUEST, "MISSION4002", "이미 진행 중인 미션입니다."),
 
     // Test Error
     TEST_EXCEPTION(HttpStatus.BAD_REQUEST, "TEST4001", "테스트용 예외입니다.")

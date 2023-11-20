@@ -7,6 +7,7 @@ import org.xml.sax.ErrorHandler;
 import umc.BackDaBang.apiPayload.code.status.ErrorStatus;
 import umc.BackDaBang.apiPayload.exception.handler.FoodTypeHandler;
 import umc.BackDaBang.apiPayload.exception.handler.MemberHandler;
+import umc.BackDaBang.apiPayload.exception.handler.MissionHandler;
 import umc.BackDaBang.converter.MemberConverter;
 import umc.BackDaBang.converter.MemberFoodTypeConverter;
 import umc.BackDaBang.converter.MemberMissionConverter;
@@ -56,6 +57,13 @@ public class MemberCommandServiceImpl implements MemberCommandService {
         Member member = loadEntity(memberId);
         Mission mission = missionCommandService.loadEntity(missionId);
         MemberMission newMemberMission = MemberMissionConverter.toMemberMission(mission);
+
+        // 미션 진행 여부 확인
+        member.getMemberMissionList()
+                        .forEach(
+                                memberMission -> {
+                            if(memberMission.equals(newMemberMission)) throw new MissionHandler(ErrorStatus.MISSION_DUPLICATE);
+                                });
 
         newMemberMission.setMember(member);
 
