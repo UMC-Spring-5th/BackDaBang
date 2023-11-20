@@ -9,5 +9,5 @@ public interface StoreCommandService extends EntityLoader<Store, Long> {
 
     Store enrollStore(StoreRequestDTO.EnrollDTO request);
 
-    Store updateRegion(StoreRequestDTO.UpdateRegionDTO request);
+    Store updateRegion(Long storeId, Long regionId);
 }

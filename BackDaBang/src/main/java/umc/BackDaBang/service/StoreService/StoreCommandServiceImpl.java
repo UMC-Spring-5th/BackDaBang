@@ -35,9 +35,9 @@ public class StoreCommandServiceImpl implements StoreCommandService {
 
     @Override
     @Transactional
-    public Store updateRegion(StoreRequestDTO.UpdateRegionDTO request) {
-        Store updateStore = loadEntity(request.getStoreId());
-        Region region = regionCommandService.loadEntity(request.getRegionId());
+    public Store updateRegion(Long storeId, Long regionId) {
+        Store updateStore = loadEntity(storeId);
+        Region region = regionCommandService.loadEntity(regionId);
         updateStore.setRegion(region);
         return updateStore;
     }

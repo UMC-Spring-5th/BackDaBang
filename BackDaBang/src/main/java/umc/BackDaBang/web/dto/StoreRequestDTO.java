@@ -13,10 +13,4 @@ public class StoreRequestDTO {
         String type;
         String address;
     }
-
-    @Getter
-    public static class UpdateRegionDTO {
-        Long storeId;
-        Long regionId;
-    }
 }

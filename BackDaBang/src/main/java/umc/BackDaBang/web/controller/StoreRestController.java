@@ -26,25 +26,22 @@ public class StoreRestController {
     private final StoreCommandService storeCommandService;
     private final StoreQueryService storeQueryService;
 
-    /**
-     * 가게 등록 API
-     * @param request 등록할 가게 정보
-     * @return 가게 등록 response DTO
-     */
     @PostMapping("/")
+    @Operation(summary = "가게 등록  API", description = "새로운 가게를 등록하는 API입니다.")
     public ApiResponse<StoreResponseDTO.EnrollResultDTO> enrollStore(@RequestBody @Valid StoreRequestDTO.EnrollDTO request) {
         Store store = storeCommandService.enrollStore(request);
         return ApiResponse.onSuccess(StoreConverter.toEnrollResultDTO(store));
     }
 
-    /**
-     * 가게 지역 설정 API
-     * @param request 가게 및 지역 정보 DTO
-     * @return 가게 지역 설정 response DTO
-     */
-    @PostMapping("/region")
-    public ApiResponse<StoreResponseDTO.UpdateRegionResultDTO> updateRegion(@RequestBody @Valid StoreRequestDTO.UpdateRegionDTO request) {
-        Store store = storeCommandService.updateRegion(request);
+    @PostMapping("/{storeId}/regions/{regionId}")
+    @Operation(summary = "특정 가게의 지역 설정 API", description = "특정 가게에 지역을 설정하는 API입니다.")
+    @Parameters({
+            @Parameter(name = "storeId", description = "가게의 아이디, path variable 입니다."),
+            @Parameter(name = "regionId", description = "지역의 아이디, path variable 입니다.")
+    })
+    public ApiResponse<StoreResponseDTO.UpdateRegionResultDTO> updateRegion(@PathVariable Long storeId,
+                                                                            @PathVariable Long regionId) {
+        Store store = storeCommandService.updateRegion(storeId, regionId);
         return ApiResponse.onSuccess(StoreConverter.toUpdateRegionResultDTO(store));
     }
 
