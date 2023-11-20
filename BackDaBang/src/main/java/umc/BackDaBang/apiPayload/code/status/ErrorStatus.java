@@ -16,6 +16,8 @@ public enum ErrorStatus implements BaseErrorCode {
 
     // Member Error
     MEMBER_NOT_FOUND(HttpStatus.BAD_REQUEST, "MEMBER001", "존재하지 않는 사용자입니다."),
+    MEMBER_MISSION_NOT_FOUND(HttpStatus.BAD_REQUEST, "MEMBER002", "진행 중이지 않은 미션입니다."),
+    MEMBER_MISSION_DUPLICATE_COMPLETE(HttpStatus.BAD_REQUEST, "MEMBER003", "이미 완료된 미션입니다."),
 
     // Auth Error
     ACCESS_TOKEN_LOSS(HttpStatus.BAD_REQUEST, "AUTH003", "Access 토큰이 없습니다."),

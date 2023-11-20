@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
 
 public class MemberResponseDTO {
 
@@ -24,7 +23,7 @@ public class MemberResponseDTO {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class StartMissionDTO {
+    public static class MissionIdDTO {
         Long memberMissionId;
         LocalDateTime createdAt;
     }

@@ -71,6 +71,21 @@ public class MemberCommandServiceImpl implements MemberCommandService {
 
     }
 
+    @Override
+    @Transactional
+    public MemberMission completeMission(Long memberId, Long memberMissionId) {
+        Member member = loadEntity(memberId);
+        List<MemberMission> memberMissionList = member.getMemberMissionList().stream()
+                .filter(memberMission -> memberMission.getId().equals(memberMissionId))
+                .toList();
+
+        if(memberMissionList.isEmpty()) throw new MemberHandler(ErrorStatus.MEMBER_MISSION_NOT_FOUND);
+        MemberMission memberMission = memberMissionList.get(0);
+        if(!memberMission.complete()) throw new MemberHandler(ErrorStatus.MEMBER_MISSION_DUPLICATE_COMPLETE);
+        return memberMission;
+
+    }
+
 
     @Override
     public Member loadEntity(Long memberId) {

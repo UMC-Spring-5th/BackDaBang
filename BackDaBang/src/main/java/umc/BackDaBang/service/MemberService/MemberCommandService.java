@@ -8,6 +8,6 @@ import umc.BackDaBang.web.dto.MemberRequestDTO;
 public interface MemberCommandService extends EntityLoader<Member, Long> {
 
     Member signUpMember(MemberRequestDTO.SignUpDTO request);
-
     MemberMission startMission(Long memberId, Long missionId);
+    MemberMission completeMission(Long memberId, Long memberMissionId);
 }

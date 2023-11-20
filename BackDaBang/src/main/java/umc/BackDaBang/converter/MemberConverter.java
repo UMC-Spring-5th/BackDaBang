@@ -30,8 +30,8 @@ public class MemberConverter {
                 .build();
     }
 
-    public static MemberResponseDTO.StartMissionDTO toStartMissionDTO(MemberMission memberMission) {
-        return MemberResponseDTO.StartMissionDTO.builder()
+    public static MemberResponseDTO.MissionIdDTO toMissionIdDTO(MemberMission memberMission) {
+        return MemberResponseDTO.MissionIdDTO.builder()
                 .memberMissionId(memberMission.getId())
                 .createdAt(memberMission.getCreatedAt())
                 .build();

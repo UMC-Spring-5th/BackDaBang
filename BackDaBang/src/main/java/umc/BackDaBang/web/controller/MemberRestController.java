@@ -41,10 +41,22 @@ public class MemberRestController {
             @Parameter(name = "missionId", description = "미션의 아이디, path variable 입니다."),
             @Parameter(name = "memberId", description = "멤버의 아이디, request parameter 입니다.")
     })
-    public ApiResponse<MemberResponseDTO.StartMissionDTO> startMission(@PathVariable(name = "missionId") Long missionId,
-                                                                       @RequestParam(name = "memberId") Long memberId) {
+    public ApiResponse<MemberResponseDTO.MissionIdDTO> startMission(@PathVariable(name = "missionId") Long missionId,
+                                                                    @RequestParam(name = "memberId") Long memberId) {
         MemberMission memberMission = memberCommandService.startMission(memberId, missionId);
-        return ApiResponse.onSuccess(MemberConverter.toStartMissionDTO(memberMission));
+        return ApiResponse.onSuccess(MemberConverter.toMissionIdDTO(memberMission));
+    }
+
+    @PatchMapping ("/missions/{memberMissionId}")
+    @Operation(summary = "멤버 미션 완료 API", description = "특정 멤버 미션을 완료하는 API 입니다.")
+    @Parameters({
+            @Parameter(name = "memberMissionId", description = "멤버 미션의 아이디, path variable 입니다."),
+            @Parameter(name = "memberId", description = "멤버의 아이디, request parameter 입니다.")
+    })
+    public ApiResponse<MemberResponseDTO.MissionIdDTO> completeMission(@PathVariable(name = "memberMissionId") Long memberMissionId,
+                                                                       @RequestParam(name = "memberId") Long memberId) {
+        MemberMission memberMission = memberCommandService.completeMission(memberId, memberMissionId);
+        return ApiResponse.onSuccess(MemberConverter.toMissionIdDTO(memberMission));
     }
 
     @GetMapping("/")

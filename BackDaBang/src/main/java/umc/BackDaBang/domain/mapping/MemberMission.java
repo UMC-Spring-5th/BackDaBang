@@ -33,6 +33,12 @@ public class MemberMission extends BaseEntity {
         member.getMemberMissionList().add(this);
     }
 
+    public Boolean complete() {
+        if(this.isSuccess) return Boolean.FALSE;
+        this.isSuccess = Boolean.TRUE;
+        return Boolean.TRUE;
+    }
+
     public Boolean equals(MemberMission memberMission) {
         if(memberMission.mission.equals(this.mission))
             return Boolean.TRUE;
