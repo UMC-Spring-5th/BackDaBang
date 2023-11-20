@@ -2,7 +2,10 @@ package umc.BackDaBang.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 import umc.BackDaBang.domain.common.BaseEntity;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -28,4 +31,17 @@ public class Store extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private Region region;
+
+    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
+    private List<Review> reviews;
+
+    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
+    private List<Mission> missions;
+
+    public void setRegion(Region region) {
+        if(this.region != null)
+            region.getStoreList().remove(this);
+        this.region = region;
+        region.getStoreList().add(this);
+    }
 }

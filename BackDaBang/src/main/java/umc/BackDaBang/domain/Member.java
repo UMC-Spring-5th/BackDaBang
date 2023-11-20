@@ -1,19 +1,25 @@
 package umc.BackDaBang.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import umc.BackDaBang.domain.common.BaseEntity;
 import umc.BackDaBang.domain.enums.Gender;
 import umc.BackDaBang.domain.enums.SocialType;
+import umc.BackDaBang.domain.mapping.MemberFoodType;
+import umc.BackDaBang.domain.mapping.MemberMission;
 
 @Entity
 @Getter
+@DynamicInsert
+@DynamicUpdate
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
@@ -44,5 +50,12 @@ public class Member extends BaseEntity {
     @Column(length = 13)
     private String phoneNumber;
 
-    private Integer point;
+    @ColumnDefault("0")
+    private Long point;
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<MemberFoodType> memberFoodTypeList;
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<MemberMission> memberMissionList = new ArrayList<>();
 }

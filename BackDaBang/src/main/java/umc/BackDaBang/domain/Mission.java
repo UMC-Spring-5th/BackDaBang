@@ -35,4 +35,9 @@ public class Mission extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private Store store;
+
+    public void setMission(Store store) {
+        this.store = store;
+        store.getMissions().add(this);
+    }
 }
