@@ -5,4 +5,5 @@ import umc.BackDaBang.web.dto.Mission.MissionRequestDTO;
 
 public interface MissionService {
     Mission createMission(MissionRequestDTO.CreateMissionDTO request);
+    Mission findMissionById(Long missionId);
 }

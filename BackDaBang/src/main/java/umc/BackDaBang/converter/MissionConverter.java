@@ -1,5 +1,6 @@
 package umc.BackDaBang.converter;
 
+import umc.BackDaBang.domain.Member;
 import umc.BackDaBang.domain.Mission;
 import umc.BackDaBang.web.dto.Mission.MissionRequestDTO;
 import umc.BackDaBang.web.dto.Mission.MissionResponseDTO;
@@ -24,4 +25,5 @@ public class MissionConverter {
                 .createdAt(LocalDateTime.now())
                 .build();
     }
+
 }

@@ -48,4 +48,6 @@ public class MemberCommandServiceImpl implements  MemberCommandService{
         return memberRepository.findById(memberId)
                 .orElseThrow(() -> new MemberHandler(ErrorStatus.MEMBER_NOT_FOUND));
     }
+
+
 }

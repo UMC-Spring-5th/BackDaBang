@@ -17,7 +17,6 @@ public class MemberConverter {
     }
 
     public static Member toMember(MemberRequestDTO.JoinDto request) {
-        Gender gender =null;
 
 
         return Member.builder()

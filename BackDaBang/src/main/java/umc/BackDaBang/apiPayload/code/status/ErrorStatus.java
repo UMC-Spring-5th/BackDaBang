@@ -27,6 +27,10 @@ public enum ErrorStatus implements BaseErrorCode {
     REGION_NOT_FOUND(HttpStatus.NOT_FOUND, "REGION4001","지역을 찾을 수 없습니다."),
     //FOOD TYPE 관련 에러
     FOOD_TYPE_NOT_FOUND(HttpStatus.NOT_FOUND, "FOODTYPE4001", "해당 음식종류가 없습니다."),
+    //Mission 관련 에러
+    MISSION_NOT_FOUND(HttpStatus.NOT_FOUND, "MISSION4001", "미션이 없습니다."),
+    //MEMBERMISSION 관련 에러
+    MEMBER_MISSION_EXIST(HttpStatus.BAD_REQUEST,"MEMBERMISSION4001", "이미 도전 중이거나, 수행완료한 미션입니다."),
     // For test
     TEMP_EXCEPTION(HttpStatus.BAD_REQUEST, "TEMP4001", "이거는 테스트");
 
