@@ -1,20 +1,26 @@
 package umc.BackDaBang.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import umc.BackDaBang.domain.common.BaseEntity;
 import umc.BackDaBang.domain.enums.Gender;
 import umc.BackDaBang.domain.enums.SocialType;
+import umc.BackDaBang.domain.mapping.MemberFoodType;
+import umc.BackDaBang.domain.mapping.MemberMission;
 
 @Entity
 @Getter
 @Builder
+@DynamicUpdate
+@DynamicInsert
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class Member extends BaseEntity {
@@ -26,12 +32,14 @@ public class Member extends BaseEntity {
     @Column(nullable = false)
     private String email;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private SocialType socialType;
 
     @Column(nullable = false, length = 20)
     private String name;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Gender gender;
 
@@ -44,5 +52,16 @@ public class Member extends BaseEntity {
     @Column(length = 13)
     private String phoneNumber;
 
+    @ColumnDefault("0")
     private Integer point;
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<MemberFoodType> memberFoodTypeList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<MemberMission> memberMissionList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<Review> reviewList = new ArrayList<>();
+
 }

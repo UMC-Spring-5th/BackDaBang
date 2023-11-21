@@ -3,8 +3,11 @@ package umc.BackDaBang.domain;
 import jakarta.persistence.*;
 import lombok.*;
 import umc.BackDaBang.domain.common.BaseEntity;
+import umc.BackDaBang.domain.mapping.MemberMission;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -35,4 +38,15 @@ public class Mission extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private Store store;
+
+    @OneToMany(mappedBy = "mission", cascade = CascadeType.ALL)
+    private List<MemberMission> memberMissionList = new ArrayList<>();
+
+    public void setMission(Store store) {
+        if(this.store != null) {
+            store.getMissionList().remove(this);
+        }
+        this.store = store;
+        store.getMissionList().add(this);
+    }
 }

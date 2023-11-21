@@ -1,13 +1,14 @@
-package umc.BackDaBang.service;
+package umc.BackDaBang.service.TempService;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import umc.BackDaBang.apiPayload.code.status.ErrorStatus;
 import umc.BackDaBang.apiPayload.exception.handler.TempHandler;
+import umc.BackDaBang.service.TempService.TempQueryService;
 
 @Service
 @RequiredArgsConstructor
-public class TempQueryServiceImpl implements TempQueryService{
+public class TempQueryServiceImpl implements TempQueryService {
     @Override
     public void CheckFlag(Integer flag) {
         if (flag ==1) {

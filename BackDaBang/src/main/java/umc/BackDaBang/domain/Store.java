@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import umc.BackDaBang.domain.common.BaseEntity;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Builder
@@ -23,9 +25,25 @@ public class Store extends BaseEntity {
     @Column(nullable = false)
     private String address;
 
+
     private Double rating;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn
+    @JoinColumn(name = "region_id")
     private Region region;
+
+
+    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
+    private List<Review> reviewList;
+
+    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
+    private List<Mission> missionList;
+
+    public void setRegion(Region region) {
+        if(this.region != null) {
+            region.getStoreList().remove(this);
+        }
+        this.region = region;
+        region.getStoreList().add(this);
+    }
 }
