@@ -39,6 +39,7 @@ public enum ErrorStatus implements BaseErrorCode {
     // Misson Error
     MISSION_NOT_FOUND(HttpStatus.BAD_REQUEST, "MISSION001", "존재하지 않는 미션입니다."),
     MISSION_DUPLICATE(HttpStatus.BAD_REQUEST, "MISSION002", "이미 진행 중인 미션입니다."),
+    INVALID_MISSION_POINT(HttpStatus.BAD_REQUEST, "MISSION003", "미션 포인트는 100 포인트 단위 입니다."),
 
     // Test Error
     TEST_EXCEPTION(HttpStatus.BAD_REQUEST, "TEST001", "테스트용 예외입니다.")

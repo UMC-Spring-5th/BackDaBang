@@ -29,7 +29,7 @@ public class Mission extends BaseEntity {
     @Column(nullable = false)
     private LocalDateTime deadline;
 
-    @Column(nullable = false, length = 20)
+    @Column(nullable = false)
     private String authorizationCode;
 
     @ManyToOne(fetch = FetchType.LAZY)

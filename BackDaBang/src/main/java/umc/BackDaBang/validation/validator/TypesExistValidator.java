@@ -27,7 +27,7 @@ public class TypesExistValidator implements ConstraintValidator<ExistTypes, List
 
         if (!isValid) {
             context.disableDefaultConstraintViolation();;
-            context.buildConstraintViolationWithTemplate(ErrorStatus.FOOD_TYPE_NOT_FOUND.toString()).addConstraintViolation();
+            context.buildConstraintViolationWithTemplate(ErrorStatus.FOOD_TYPE_NOT_FOUND.getMessage()).addConstraintViolation();
         }
 
         return isValid;
