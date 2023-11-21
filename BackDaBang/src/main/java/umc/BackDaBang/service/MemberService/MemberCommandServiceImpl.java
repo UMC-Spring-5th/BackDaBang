@@ -39,6 +39,10 @@ public class MemberCommandServiceImpl implements MemberCommandService {
     @Transactional
     public Member signUpMember(MemberRequestDTO.SignUpDTO request) {
         Member newMember = MemberConverter.toMember(request);
+
+        if(memberRepository.findMemberByEmail(request.getEmail()).isPresent())
+            throw new MemberHandler(ErrorStatus.MEMBER_DUPLICATE);
+
         List<FoodType> foodTypeList = request.getFoodTypeList().stream()
                 .map(typeId -> {
                     return foodTypeRepository.findById(typeId).orElseThrow(() -> new FoodTypeHandler(ErrorStatus.FOOD_TYPE_NOT_FOUND));

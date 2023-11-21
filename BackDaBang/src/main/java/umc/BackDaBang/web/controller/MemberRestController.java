@@ -21,7 +21,6 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@Validated
 @RequestMapping("/members")
 public class MemberRestController {
 
