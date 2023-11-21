@@ -13,7 +13,7 @@ public class ReviewConverter {
                 .build();
     }
 
-    public static Review toReview(ReviewRequestDTO.CreateDTO request) {
+    public static Review toReview(ReviewRequestDTO.EnrollDTO request) {
         return Review.builder()
                 .content(request.getContent())
                 .rating(request.getRating())
