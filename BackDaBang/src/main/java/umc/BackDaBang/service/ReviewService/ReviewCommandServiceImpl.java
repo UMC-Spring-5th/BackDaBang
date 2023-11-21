@@ -28,10 +28,10 @@ public class ReviewCommandServiceImpl implements ReviewCommandService {
 
     @Override
     @Transactional
-    public Review createReview(Long memberId, ReviewRequestDTO.CreateDTO request) {
+    public Review enrollReview(Long memberId, Long storeId, ReviewRequestDTO.EnrollReviewDTO request) {
         Review newReview = ReviewConverter.toReview(request);
         Member member = memberCommandService.loadEntity(memberId);
-        Store store = storeCommandService.loadEntity(request.getStoreId());
+        Store store = storeCommandService.loadEntity(storeId);
         newReview.setReview(member, store);
 
         return reviewRepository.save(newReview);

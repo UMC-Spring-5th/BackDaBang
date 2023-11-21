@@ -8,5 +8,6 @@ import java.util.List;
 
 public interface MemberQueryService extends EntityLoader<Member, Long> {
 
-    List<MemberMission> getMemberMissions(Long memberId, Boolean isSucceed);
+    List<MemberMission> getMemberMissionList(Long memberId, Boolean isSucceed);
+
 }

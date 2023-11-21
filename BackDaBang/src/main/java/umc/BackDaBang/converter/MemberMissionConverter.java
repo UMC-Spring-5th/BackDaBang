@@ -1,6 +1,5 @@
 package umc.BackDaBang.converter;
 
-import umc.BackDaBang.domain.Member;
 import umc.BackDaBang.domain.Mission;
 import umc.BackDaBang.domain.mapping.MemberMission;
 import umc.BackDaBang.web.dto.MemberResponseDTO;
@@ -16,19 +15,20 @@ public class MemberMissionConverter {
                 .build();
     }
 
-    public static List<MemberResponseDTO.MemberMissionResultDTO> toMemberMissionResultList(List<MemberMission> memberMissions) {
-        return memberMissions.stream()
-                .map(memberMission -> toMemberMissionResult(memberMission.getId(), memberMission.getMission()))
-                .toList();
-
+    private static MemberResponseDTO.MemberMissionResultDTO toMemberMissionDTO(MemberMission memberMission) {
+        return MemberResponseDTO.MemberMissionResultDTO.builder()
+                .memberMissionId(memberMission.getId())
+                .title(memberMission.getMission().getTitle())
+                .content(memberMission.getMission().getContent())
+                .point(memberMission.getMission().getPoint())
+                .deadline(memberMission.getMission().getDeadline())
+                .createdAt(memberMission.getCreatedAt().toLocalDate())
+                .build();
     }
 
-    private static MemberResponseDTO.MemberMissionResultDTO toMemberMissionResult(Long memberMissionId, Mission mission) {
-        return MemberResponseDTO.MemberMissionResultDTO.builder()
-                .memberMissionId(memberMissionId)
-                .title(mission.getTitle())
-                .content(mission.getContent())
-                .point(mission.getPoint())
-                .build();
+    public static List<MemberResponseDTO.MemberMissionResultDTO> toMemberMissionListDTO(List<MemberMission> memberMissionList) {
+        return memberMissionList.stream()
+                .map(MemberMissionConverter::toMemberMissionDTO)
+                .toList();
     }
 }

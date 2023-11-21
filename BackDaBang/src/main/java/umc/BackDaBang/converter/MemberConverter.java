@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class MemberConverter {
 
-    public static MemberResponseDTO.SignUpResultDTO toSignUpResultDTO(Member member) {
+    public static MemberResponseDTO.SignUpResultDTO toSignUpDTO(Member member) {
         return MemberResponseDTO.SignUpResultDTO.builder()
                 .memberId(member.getId())
                 .createdAt(member.getCreatedAt())
@@ -30,14 +30,14 @@ public class MemberConverter {
                 .build();
     }
 
-    public static MemberResponseDTO.StartMissionResultDTO toStartMissionResultDTO(MemberMission memberMission) {
-        return MemberResponseDTO.StartMissionResultDTO.builder()
+    public static MemberResponseDTO.MissionIdResultDTO toMissionIdDTO(MemberMission memberMission) {
+        return MemberResponseDTO.MissionIdResultDTO.builder()
                 .memberMissionId(memberMission.getId())
                 .createdAt(memberMission.getCreatedAt())
                 .build();
     }
 
-    public static MemberResponseDTO.MyPageResultDTO toMyPageResultDTO(Member member) {
+    public static MemberResponseDTO.MyPageResultDTO toMyPageDTO(Member member) {
         return MemberResponseDTO.MyPageResultDTO.builder()
                 .name(member.getName())
                 .email(member.getEmail())

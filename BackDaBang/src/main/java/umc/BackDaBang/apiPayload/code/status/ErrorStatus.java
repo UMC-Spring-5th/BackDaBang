@@ -15,26 +15,34 @@ public enum ErrorStatus implements BaseErrorCode {
     _FORBIDDEN(HttpStatus.FORBIDDEN, "COMMON403", "금지된 요청입니다."),
 
     // Member Error
-    MEMBER_NOT_FOUND(HttpStatus.BAD_REQUEST, "MEMBER4001", "존재하지 않는 사용자입니다.."),
+    MEMBER_NOT_FOUND(HttpStatus.BAD_REQUEST, "MEMBER001", "존재하지 않는 사용자입니다."),
+    MEMBER_MISSION_NOT_FOUND(HttpStatus.BAD_REQUEST, "MEMBER002", "진행 중이지 않은 미션입니다."),
+    MEMBER_MISSION_DUPLICATE_COMPLETE(HttpStatus.BAD_REQUEST, "MEMBER003", "이미 완료된 미션입니다."),
+    MEMBER_DUPLICATE(HttpStatus.BAD_REQUEST, "MEMBER004", "중복된 이메일입니다."),
 
+    // Auth Error
+    ACCESS_TOKEN_LOSS(HttpStatus.BAD_REQUEST, "AUTH003", "Access 토큰이 없습니다."),
+    ACCESS_TOEKN_EXPIRED(HttpStatus.BAD_REQUEST, "AUTH004", "Access 토큰이 만료되었습니다."),
+    ACCESS_TOKEN_INVALID(HttpStatus.BAD_REQUEST, "AUTH005", "Access 토큰 모양이 올바르지 않습니다."),
     // FoodType Error
-    FOOD_TYPE_NOT_FOUND(HttpStatus.BAD_REQUEST, "FOODTYPE4001", "존재하지 않는 음식 타입입니다.."),
+    FOOD_TYPE_NOT_FOUND(HttpStatus.BAD_REQUEST, "FOODTYPE001", "존재하지 않는 음식 타입입니다."),
 
     // Store Error
-    STORE_NOT_FOUDN(HttpStatus.BAD_REQUEST, "STORE4001", "존재하지 않는 가게입니다."),
+    STORE_NOT_FOUDN(HttpStatus.BAD_REQUEST, "STORE001", "존재하지 않는 가게입니다."),
 
     // Region Error
-    REGION_NOT_FOUND(HttpStatus.BAD_REQUEST, "REGION4001", "존재하지 않는 지역입니다."),
+    REGION_NOT_FOUND(HttpStatus.BAD_REQUEST, "REGION001", "존재하지 않는 지역입니다."),
 
     // Review Error
-    REVIEW_NOT_FOUND(HttpStatus.BAD_REQUEST, "REVIEW4001", "존재하지 않는 리뷰입니다."),
+    REVIEW_NOT_FOUND(HttpStatus.BAD_REQUEST, "REVIEW001", "존재하지 않는 리뷰입니다."),
 
     // Misson Error
-    MISSION_NOT_FOUND(HttpStatus.BAD_REQUEST, "MISSION4001", "존재하지 않는 미션입니다."),
-    MISSION_DUPLICATE(HttpStatus.BAD_REQUEST, "MISSION4002", "이미 진행 중인 미션입니다."),
+    MISSION_NOT_FOUND(HttpStatus.BAD_REQUEST, "MISSION001", "존재하지 않는 미션입니다."),
+    MISSION_DUPLICATE(HttpStatus.BAD_REQUEST, "MISSION002", "이미 진행 중인 미션입니다."),
+    INVALID_MISSION_POINT(HttpStatus.BAD_REQUEST, "MISSION003", "미션 포인트는 100 포인트 단위 입니다."),
 
     // Test Error
-    TEST_EXCEPTION(HttpStatus.BAD_REQUEST, "TEST4001", "테스트용 예외입니다.")
+    TEST_EXCEPTION(HttpStatus.BAD_REQUEST, "TEST001", "테스트용 예외입니다.")
     ;
 
     private final HttpStatus httpStatus;

@@ -6,6 +6,7 @@ import org.hibernate.annotations.ColumnDefault;
 import umc.BackDaBang.domain.common.BaseEntity;
 
 import java.util.List;
+import java.util.Optional;
 
 @Entity
 @Getter
@@ -43,5 +44,13 @@ public class Store extends BaseEntity {
             region.getStoreList().remove(this);
         this.region = region;
         region.getStoreList().add(this);
+    }
+
+    public void updateRating() {
+        if(reviews.isEmpty()) return;
+        Optional<Double> totalRating = reviews.stream()
+                .map(Review::getRating)
+                .reduce(Double::sum);
+        this.rating = totalRating.get() / reviews.size();
     }
 }

@@ -33,5 +33,6 @@ public class Review extends BaseEntity {
         this.member = writer;
         this.store = store;
         store.getReviews().add(this);
+        store.updateRating();
     }
 }

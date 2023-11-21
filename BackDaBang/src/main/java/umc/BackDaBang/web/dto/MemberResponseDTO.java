@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class MemberResponseDTO {
@@ -22,7 +23,7 @@ public class MemberResponseDTO {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class StartMissionResultDTO {
+    public static class MissionIdResultDTO {
         Long memberMissionId;
         LocalDateTime createdAt;
     }
@@ -47,5 +48,7 @@ public class MemberResponseDTO {
         String title;
         String content;
         Long point;
+        LocalDateTime deadline;
+        LocalDate createdAt;
     }
 }
