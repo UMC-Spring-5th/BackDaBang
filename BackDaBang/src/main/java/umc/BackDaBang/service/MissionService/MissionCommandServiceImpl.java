@@ -26,7 +26,7 @@ public class MissionCommandServiceImpl implements MissionCommandService{
 
     @Override
     @Transactional
-    public Mission enrollMission(Long storeId, MissionRequestDTO.EnrollDTO request) {
+    public Mission enrollMission(Long storeId, MissionRequestDTO.EnrollMissionDTO request) {
         Mission newMission = MissionConverter.toMission(request);
         Store store = storeCommandService.loadEntity(storeId);
         newMission.setMission(store);

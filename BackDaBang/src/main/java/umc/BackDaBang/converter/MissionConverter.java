@@ -8,14 +8,14 @@ import java.util.UUID;
 
 public class MissionConverter {
 
-    public static MissionResponseDTO.EnrollResultDTO toCreateResultDTO(Mission mission) {
-        return MissionResponseDTO.EnrollResultDTO.builder()
+    public static MissionResponseDTO.EnrollMissionResultDTO toCreateResultDTO(Mission mission) {
+        return MissionResponseDTO.EnrollMissionResultDTO.builder()
                 .missionId(mission.getId())
                 .createdAt(mission.getCreatedAt())
                 .build();
     }
 
-    public static Mission toMission(MissionRequestDTO.EnrollDTO request) {
+    public static Mission toMission(MissionRequestDTO.EnrollMissionDTO request) {
         return Mission.builder()
                 .title(request.getTitle())
                 .content(request.getContent())

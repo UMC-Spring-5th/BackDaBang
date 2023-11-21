@@ -4,13 +4,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import umc.BackDaBang.apiPayload.code.status.ErrorStatus;
-import umc.BackDaBang.apiPayload.exception.handler.RegionHandler;
 import umc.BackDaBang.apiPayload.exception.handler.StoreHandler;
 import umc.BackDaBang.converter.StoreConverter;
 import umc.BackDaBang.domain.Region;
 import umc.BackDaBang.domain.Store;
-import umc.BackDaBang.domain.common.EntityLoader;
-import umc.BackDaBang.repository.RegionRepository;
 import umc.BackDaBang.repository.StoreRepository;
 import umc.BackDaBang.service.RegionService.RegionCommandService;
 import umc.BackDaBang.web.dto.StoreRequestDTO;
@@ -27,7 +24,7 @@ public class StoreCommandServiceImpl implements StoreCommandService {
 
     @Override
     @Transactional
-    public Store enrollStore(StoreRequestDTO.EnrollDTO request) {
+    public Store enrollStore(StoreRequestDTO.EnrollStoreDTO request) {
         Store newStore = StoreConverter.toStore(request);
 
         return storeRepository.save(newStore);

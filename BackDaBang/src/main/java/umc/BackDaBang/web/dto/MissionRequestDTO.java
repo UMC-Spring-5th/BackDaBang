@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 public class MissionRequestDTO {
 
     @Getter
-    public static class EnrollDTO {
+    public static class EnrollMissionDTO {
         @NotBlank(message = "미션 제목은 필수 입력값 입니다.")
         String title;
         String content;

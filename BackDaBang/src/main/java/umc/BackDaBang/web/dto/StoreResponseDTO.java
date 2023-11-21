@@ -15,7 +15,7 @@ public class StoreResponseDTO {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class EnrollDTO {
+    public static class EnrollStoreResultDTO {
         Long storeId;
         LocalDateTime createdAt;
     }
@@ -24,7 +24,7 @@ public class StoreResponseDTO {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class UpdateRegionDTO {
+    public static class UpdateRegionResultDTO {
         Long storeId;
         String regionName;
     }
@@ -33,8 +33,8 @@ public class StoreResponseDTO {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class StoreReviewListDTO {
-        List<StoreReviewDTO> reviewList;
+    public static class StoreReviewListResultDTO {
+        List<StoreReviewResultDTO> reviewList;
         Integer listSize;
         Integer totalPage;
         Long totalElements;
@@ -47,7 +47,7 @@ public class StoreResponseDTO {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class StoreReviewDTO {
+    public static class StoreReviewResultDTO {
         String nickname;
         Double rating;
         String content;
@@ -58,8 +58,8 @@ public class StoreResponseDTO {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class StoreMissionListDTO {
-        List<StoreMissionDTO> missionList;
+    public static class StoreMissionListResultDTO {
+        List<StoreMissionResultDTO> missionList;
         Integer listSize;
         Integer totalPage;
         Long totalElements;
@@ -71,7 +71,7 @@ public class StoreResponseDTO {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class StoreMissionDTO {
+    public static class StoreMissionResultDTO {
         Long missionId;
         String title;
         String content;

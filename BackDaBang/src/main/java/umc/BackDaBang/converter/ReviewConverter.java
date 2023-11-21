@@ -6,14 +6,14 @@ import umc.BackDaBang.web.dto.ReviewResponseDTO;
 
 public class ReviewConverter {
 
-    public static ReviewResponseDTO.CreateResultDTO toCreateResultDTO(Review review) {
-        return ReviewResponseDTO.CreateResultDTO.builder()
+    public static ReviewResponseDTO.EnrollReviewResultDTO toCreateResultDTO(Review review) {
+        return ReviewResponseDTO.EnrollReviewResultDTO.builder()
                 .reviewId(review.getId())
                 .createAt(review.getCreatedAt())
                 .build();
     }
 
-    public static Review toReview(ReviewRequestDTO.EnrollDTO request) {
+    public static Review toReview(ReviewRequestDTO.EnrollReviewDTO request) {
         return Review.builder()
                 .content(request.getContent())
                 .rating(request.getRating())

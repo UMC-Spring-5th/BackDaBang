@@ -13,7 +13,7 @@ public class MissionResponseDTO {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class EnrollResultDTO {
+    public static class EnrollMissionResultDTO {
         Long missionId;
         LocalDateTime createdAt;
     }

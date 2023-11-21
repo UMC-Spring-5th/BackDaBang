@@ -8,7 +8,7 @@ import lombok.Getter;
 public class ReviewRequestDTO {
 
     @Getter
-    public static class EnrollDTO {
+    public static class EnrollReviewDTO {
         @NotBlank(message = "리뷰 내용은 필수 입력 값입니다.")
         String content;
         @Max(value = 5L, message = "평점은 5점을 넘을 수 없습니다.")

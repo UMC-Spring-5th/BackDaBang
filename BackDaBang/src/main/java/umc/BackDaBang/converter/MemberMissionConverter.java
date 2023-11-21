@@ -1,6 +1,5 @@
 package umc.BackDaBang.converter;
 
-import org.springframework.data.domain.Page;
 import umc.BackDaBang.domain.Mission;
 import umc.BackDaBang.domain.mapping.MemberMission;
 import umc.BackDaBang.web.dto.MemberResponseDTO;
@@ -16,8 +15,8 @@ public class MemberMissionConverter {
                 .build();
     }
 
-    private static MemberResponseDTO.MemberMissionDTO toMemberMissionDTO(MemberMission memberMission) {
-        return MemberResponseDTO.MemberMissionDTO.builder()
+    private static MemberResponseDTO.MemberMissionResultDTO toMemberMissionDTO(MemberMission memberMission) {
+        return MemberResponseDTO.MemberMissionResultDTO.builder()
                 .memberMissionId(memberMission.getId())
                 .title(memberMission.getMission().getTitle())
                 .content(memberMission.getMission().getContent())
@@ -27,7 +26,7 @@ public class MemberMissionConverter {
                 .build();
     }
 
-    public static List<MemberResponseDTO.MemberMissionDTO> toMemberMissionListDTO(List<MemberMission> memberMissionList) {
+    public static List<MemberResponseDTO.MemberMissionResultDTO> toMemberMissionListDTO(List<MemberMission> memberMissionList) {
         return memberMissionList.stream()
                 .map(MemberMissionConverter::toMemberMissionDTO)
                 .toList();

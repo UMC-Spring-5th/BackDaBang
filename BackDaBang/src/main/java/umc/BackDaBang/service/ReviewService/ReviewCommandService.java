@@ -7,5 +7,5 @@ import umc.BackDaBang.web.dto.ReviewRequestDTO;
 
 public interface ReviewCommandService extends EntityLoader<Review, Long> {
 
-    Review enrollReview(Long memberId, Long storeId, ReviewRequestDTO.EnrollDTO request);
+    Review enrollReview(Long memberId, Long storeId, ReviewRequestDTO.EnrollReviewDTO request);
 }

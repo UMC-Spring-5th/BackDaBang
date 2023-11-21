@@ -28,9 +28,9 @@ public class ReviewRestController {
             @Parameter(name = "memberId", description = "멤버의 아이디, request parameter 입니다."),
             @Parameter(name = "storeId", description = "가게의 아이디, request parameter 입니다.")
     })
-    public ApiResponse<ReviewResponseDTO.CreateResultDTO> createReview(@RequestParam Long memberId,
-                                                                       @RequestParam Long storeId,
-                                                                       @RequestBody @Valid ReviewRequestDTO.EnrollDTO request) {
+    public ApiResponse<ReviewResponseDTO.EnrollReviewResultDTO> createReview(@RequestParam Long memberId,
+                                                                             @RequestParam Long storeId,
+                                                                             @RequestBody @Valid ReviewRequestDTO.EnrollReviewDTO request) {
         Review review = reviewCommandService.enrollReview(memberId, storeId, request);
         return ApiResponse.onSuccess(ReviewConverter.toCreateResultDTO(review));
     }

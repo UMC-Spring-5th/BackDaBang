@@ -31,7 +31,7 @@ public class StoreRestController {
 
     @PostMapping("/")
     @Operation(summary = "가게 등록 API", description = "새로운 가게를 등록하는 API입니다.")
-    public ApiResponse<StoreResponseDTO.EnrollDTO> enrollStore(@RequestBody @Valid StoreRequestDTO.EnrollDTO request) {
+    public ApiResponse<StoreResponseDTO.EnrollStoreResultDTO> enrollStore(@RequestBody @Valid StoreRequestDTO.EnrollStoreDTO request) {
         Store store = storeCommandService.enrollStore(request);
         return ApiResponse.onSuccess(StoreConverter.toEnrollDTO(store));
     }
@@ -42,8 +42,8 @@ public class StoreRestController {
             @Parameter(name = "storeId", description = "가게의 아이디, path variable 입니다."),
             @Parameter(name = "regionId", description = "지역의 아이디, path variable 입니다.")
     })
-    public ApiResponse<StoreResponseDTO.UpdateRegionDTO> updateRegion(@PathVariable(name = "storeId") Long storeId,
-                                                                      @PathVariable(name = "regionId") Long regionId) {
+    public ApiResponse<StoreResponseDTO.UpdateRegionResultDTO> updateRegion(@PathVariable(name = "storeId") Long storeId,
+                                                                            @PathVariable(name = "regionId") Long regionId) {
         Store store = storeCommandService.updateRegion(storeId, regionId);
         return ApiResponse.onSuccess(StoreConverter.toUpdateRegionDTO(store));
     }
@@ -55,8 +55,8 @@ public class StoreRestController {
             @Parameter(name = "page", description = "페이지 번호, 0번이 1 페이지 입니다."),
 
     })
-    public ApiResponse<StoreResponseDTO.StoreReviewListDTO> getStoreReviews(@PathVariable(name = "storeId") Long storeId,
-                                                                            @RequestParam(name = "page") Integer page) {
+    public ApiResponse<StoreResponseDTO.StoreReviewListResultDTO> getStoreReviews(@PathVariable(name = "storeId") Long storeId,
+                                                                                  @RequestParam(name = "page") Integer page) {
         Page<Review> reviewList = storeQueryService.getReviewList(storeId, page);
         return ApiResponse.onSuccess(StoreConverter.toStoreReviewListDTO(reviewList));
     }
@@ -76,9 +76,9 @@ public class StoreRestController {
             @Parameter(name = "page", description = "페이지 번호, 0번이 1 페이지 입니다."),
 
     })
-    public ApiResponse<StoreResponseDTO.StoreReviewListDTO> getStoreReviewsByMember(@PathVariable(name = "storeId") Long storeId,
-                                                                                    @RequestParam(name = "memberId") Long memberId,
-                                                                                    @RequestParam(name = "page") Integer page) {
+    public ApiResponse<StoreResponseDTO.StoreReviewListResultDTO> getStoreReviewsByMember(@PathVariable(name = "storeId") Long storeId,
+                                                                                          @RequestParam(name = "memberId") Long memberId,
+                                                                                          @RequestParam(name = "page") Integer page) {
         Page<Review> reviewList = storeQueryService.getReviewListByMember(storeId, memberId, page);
         return ApiResponse.onSuccess(StoreConverter.toStoreReviewListDTO(reviewList));
     }
@@ -89,8 +89,8 @@ public class StoreRestController {
             @Parameter(name = "storeId", description = "가게의 아이디, path variable 입니다."),
             @Parameter(name = "page", description = "페이지 번호, 0번이 1 페이지 입니다."),
     })
-    public ApiResponse<StoreResponseDTO.StoreMissionListDTO> getMissionListDTOApiResponse(@PathVariable(name = "storeId") Long storeId,
-                                                                                          @RequestParam(name = "page") Integer page) {
+    public ApiResponse<StoreResponseDTO.StoreMissionListResultDTO> getMissionListDTOApiResponse(@PathVariable(name = "storeId") Long storeId,
+                                                                                                @RequestParam(name = "page") Integer page) {
         Page<Mission> missionList = storeQueryService.getMissionList(storeId, page);
         return ApiResponse.onSuccess(StoreConverter.toStoreMissionListDTO(missionList));
     }

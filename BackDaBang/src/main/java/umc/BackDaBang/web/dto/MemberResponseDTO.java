@@ -14,7 +14,7 @@ public class MemberResponseDTO {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class SignUpDTO {
+    public static class SignUpResultDTO {
         Long memberId;
         LocalDateTime createdAt;
     }
@@ -23,7 +23,7 @@ public class MemberResponseDTO {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class MissionIdDTO {
+    public static class MissionIdResultDTO {
         Long memberMissionId;
         LocalDateTime createdAt;
     }
@@ -32,7 +32,7 @@ public class MemberResponseDTO {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class MyPageDTO {
+    public static class MyPageResultDTO {
         String name;
         String email;
         String phoneNumber;
@@ -43,7 +43,7 @@ public class MemberResponseDTO {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class MemberMissionDTO {
+    public static class MemberMissionResultDTO {
         Long memberMissionId;
         String title;
         String content;
