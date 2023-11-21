@@ -3,10 +3,7 @@ package umc.BackDaBang.web.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import umc.BackDaBang.apiPayload.ApiResponse;
 import umc.BackDaBang.converter.ReviewConverter;
 import umc.BackDaBang.domain.Review;
@@ -22,10 +19,10 @@ public class ReviewRestController {
 
 
     @PostMapping("/")
-    public ApiResponse<ReviewResponseDTO.CreateReviewResultDTO> createReview(
+    public ApiResponse<ReviewResponseDTO.CreateReviewResultDTO> createReview(@RequestParam Long memberId,
             @RequestBody @Valid ReviewRequestDTO.CreateReviewDTO request) {
 
-        Review review = reviewService.createReview(request);
+        Review review = reviewService.createReview(request, memberId); //memberId 임시
 
         return ApiResponse.onSuccess(ReviewConverter.toCreateReviewResultDTO(review));
     }

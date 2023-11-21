@@ -18,5 +18,7 @@ public class ReviewRequestDTO {
 
         @ExistStore
         Long storeId;
+
+        Long memberId;
     }
 }
