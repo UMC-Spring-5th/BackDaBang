@@ -44,7 +44,7 @@ public class MemberCommandServiceImpl implements  MemberCommandService{
     }
 
     @Override
-    public Member findMemberById(Long memberId) {
+    public Member loadEntity(Long memberId) {
         return memberRepository.findById(memberId)
                 .orElseThrow(() -> new MemberHandler(ErrorStatus.MEMBER_NOT_FOUND));
     }

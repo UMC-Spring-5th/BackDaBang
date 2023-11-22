@@ -33,15 +33,15 @@ public class StoreServiceImpl implements StoreService {
     @Override
     @Transactional
     public Store enrollRegion(StoreRequestDTO.EnrollRegionDTO request) {
-        Store store = findStoreById(request.getStoreId());
-        Region region = regionService.findRegionById(request.getRegionId());
+        Store store = loadEntity(request.getStoreId());
+        Region region = regionService.loadEntity(request.getRegionId());
 
         store.setRegion(region);
         return store;
     }
 
     @Override
-    public Store findStoreById(Long storeId) {
+    public Store loadEntity(Long storeId) {
         return storeRepository.findById(storeId)
                 .orElseThrow(() -> new StoreHandler(ErrorStatus.STORE_NOT_FOUND));
     }

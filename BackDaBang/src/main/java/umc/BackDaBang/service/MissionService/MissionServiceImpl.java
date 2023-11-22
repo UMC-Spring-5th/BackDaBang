@@ -24,11 +24,12 @@ public class MissionServiceImpl implements MissionService{
 
     private final MissionRepository missionRepository;
     private final StoreService storeService;
+    private final MemberCommandService memberCommandService;
     @Override
     @Transactional
     public Mission createMission(MissionRequestDTO.CreateMissionDTO request) {
 
-        Store store =  storeService.findStoreById(request.getStoreId());
+        Store store =  storeService.loadEntity(request.getStoreId());
 
         Mission newMission = MissionConverter.toMission(request);
         newMission.setMission(store);
@@ -37,10 +38,27 @@ public class MissionServiceImpl implements MissionService{
     }
 
     @Override
-    public Mission findMissionById(Long missionId) {
+    @Transactional
+    public MemberMission challengeMission(Long memberId, Long missionId) {
+        Member member = memberCommandService.loadEntity(memberId);
+        Mission mission = loadEntity(missionId);
+        MemberMission newMemberMission = MemberMissionConverter.toMemberMission(mission);
+
+        // 미션 진행 여부 확인
+        member.getMemberMissionList()
+                .forEach(
+                        memberMission -> {
+                            if(memberMission.equals(newMemberMission)) throw new MissionHandler(ErrorStatus.MEMBER_MISSION_EXIST);
+                        });
+
+        newMemberMission.setMember(member);
+
+        return newMemberMission;
+    }
+    @Override
+    public Mission loadEntity(Long missionId) {
         return missionRepository.findById(missionId).orElseThrow(
                 () -> new MissionHandler(ErrorStatus.MISSION_NOT_FOUND)
         );
-
     }
 }

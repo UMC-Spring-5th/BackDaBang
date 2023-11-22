@@ -31,9 +31,4 @@ public class MissionRequestDTO {
         Long storeId;
     }
 
-    @Getter
-    public static class ChallengeMissionDTO {
-
-        Long missionId;
-    }
 }

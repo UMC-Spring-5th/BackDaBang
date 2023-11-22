@@ -9,7 +9,6 @@ import umc.BackDaBang.converter.MemberMissionConverter;
 import umc.BackDaBang.converter.MissionConverter;
 import umc.BackDaBang.domain.Mission;
 import umc.BackDaBang.domain.mapping.MemberMission;
-import umc.BackDaBang.service.MemberMissionService.MemberMissionService;
 import umc.BackDaBang.service.MissionService.MissionService;
 import umc.BackDaBang.web.dto.Mission.MissionRequestDTO;
 import umc.BackDaBang.web.dto.Mission.MissionResponseDTO;
@@ -20,7 +19,6 @@ import umc.BackDaBang.web.dto.Mission.MissionResponseDTO;
 public class MissionRestController {
 
     private final MissionService missionService;
-    private final MemberMissionService memberMissionService;
     @PostMapping("/")
     public ApiResponse<MissionResponseDTO.CreateMissionResultDTO> createMission (
             @RequestBody @Valid MissionRequestDTO.CreateMissionDTO request) {
@@ -31,9 +29,10 @@ public class MissionRestController {
 
     @PatchMapping("/challenge")
     public ApiResponse<MissionResponseDTO.ChallengeMissionDTO> challengeMission(
-            @RequestBody @Valid MissionRequestDTO.ChallengeMissionDTO request) {
+            @RequestParam Long memberId,
+            @RequestParam Long missionId) {
 
-        MemberMission memberMission = memberMissionService.challengeMission(request);
+        MemberMission memberMission = missionService.challengeMission(memberId, missionId);
         return ApiResponse.onSuccess(MemberMissionConverter.toChallengeMissionDTO(memberMission));
     }
 }

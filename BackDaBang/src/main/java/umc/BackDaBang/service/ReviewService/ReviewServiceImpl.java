@@ -22,8 +22,8 @@ public class ReviewServiceImpl implements ReviewService{
     @Override
     @Transactional
     public Review createReview(ReviewRequestDTO.CreateReviewDTO request, Long memberId) {
-        Member member = memberCommandService.findMemberById(memberId); //멤버 지정
-        Store store =  storeService.findStoreById(request.getStoreId());
+        Member member = memberCommandService.loadEntity(memberId); //멤버 지정
+        Store store =  storeService.loadEntity(request.getStoreId());
 
         Review newReview = ReviewConverter.toReview(request);
         newReview.setReview(member,store);
