@@ -13,7 +13,7 @@ import umc.BackDaBang.domain.Mission;
 import umc.BackDaBang.domain.Store;
 import umc.BackDaBang.domain.mapping.MemberMission;
 import umc.BackDaBang.repository.MissionRepository;
-import umc.BackDaBang.service.MemberService.MemberCommandService;
+import umc.BackDaBang.service.MemberService.MemberService;
 import umc.BackDaBang.service.StoreService.StoreService;
 import umc.BackDaBang.web.dto.Mission.MissionRequestDTO;
 
@@ -24,7 +24,7 @@ public class MissionServiceImpl implements MissionService{
 
     private final MissionRepository missionRepository;
     private final StoreService storeService;
-    private final MemberCommandService memberCommandService;
+    private final MemberService memberService;
     @Override
     @Transactional
     public Mission createMission(MissionRequestDTO.CreateMissionDTO request) {
@@ -40,7 +40,7 @@ public class MissionServiceImpl implements MissionService{
     @Override
     @Transactional
     public MemberMission challengeMission(Long memberId, Long missionId) {
-        Member member = memberCommandService.loadEntity(memberId);
+        Member member = memberService.loadEntity(memberId);
         Mission mission = loadEntity(missionId);
         MemberMission newMemberMission = MemberMissionConverter.toMemberMission(mission);
 
