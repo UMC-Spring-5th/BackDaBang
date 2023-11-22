@@ -9,7 +9,7 @@ import umc.BackDaBang.repository.FoodTypeRepository;
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-public class FoodTypeServiceImpl implements FoodTypeService {
+public class FoodTypeCommandServiceImpl implements FoodTypeCommandService {
     private final FoodTypeRepository foodTypeRepository;
 
     @Override

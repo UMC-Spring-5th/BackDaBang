@@ -1,6 +1,6 @@
 package umc.BackDaBang.service.FoodTypeService;
 
-public interface FoodTypeService {
+public interface FoodTypeCommandService {
 
     boolean existsById(Long id);
 }

@@ -11,7 +11,7 @@ import umc.BackDaBang.repository.RegionRepository;
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-public class RegionServiceImpl implements RegionService{
+public class RegionCommandServiceImpl implements RegionCommandService {
 
     private final RegionRepository regionRepository;
 

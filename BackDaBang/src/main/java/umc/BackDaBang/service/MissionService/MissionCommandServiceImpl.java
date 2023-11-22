@@ -13,23 +13,23 @@ import umc.BackDaBang.domain.Mission;
 import umc.BackDaBang.domain.Store;
 import umc.BackDaBang.domain.mapping.MemberMission;
 import umc.BackDaBang.repository.MissionRepository;
-import umc.BackDaBang.service.MemberService.MemberService;
-import umc.BackDaBang.service.StoreService.StoreService;
+import umc.BackDaBang.service.MemberService.MemberCommandService;
+import umc.BackDaBang.service.StoreService.StoreCommandService;
 import umc.BackDaBang.web.dto.Mission.MissionRequestDTO;
 
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-public class MissionServiceImpl implements MissionService{
+public class MissionCommandServiceImpl implements MissionCommandService {
 
     private final MissionRepository missionRepository;
-    private final StoreService storeService;
-    private final MemberService memberService;
+    private final StoreCommandService storeCommandService;
+    private final MemberCommandService memberCommandService;
     @Override
     @Transactional
     public Mission createMission(MissionRequestDTO.CreateMissionDTO request) {
 
-        Store store =  storeService.loadEntity(request.getStoreId());
+        Store store =  storeCommandService.loadEntity(request.getStoreId());
 
         Mission newMission = MissionConverter.toMission(request);
         newMission.setMission(store);
@@ -40,7 +40,7 @@ public class MissionServiceImpl implements MissionService{
     @Override
     @Transactional
     public MemberMission challengeMission(Long memberId, Long missionId) {
-        Member member = memberService.loadEntity(memberId);
+        Member member = memberCommandService.loadEntity(memberId);
         Mission mission = loadEntity(missionId);
         MemberMission newMemberMission = MemberMissionConverter.toMemberMission(mission);
 
