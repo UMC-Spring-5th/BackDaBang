@@ -13,23 +13,22 @@ import umc.BackDaBang.domain.Mission;
 import umc.BackDaBang.domain.Store;
 import umc.BackDaBang.domain.mapping.MemberMission;
 import umc.BackDaBang.repository.MissionRepository;
-import umc.BackDaBang.service.MemberService.MemberCommandService;
-import umc.BackDaBang.service.StoreService.StoreCommandService;
+import umc.BackDaBang.service.MemberService.MemberQueryService;
+import umc.BackDaBang.service.StoreService.StoreQueryService;
 import umc.BackDaBang.web.dto.Mission.MissionRequestDTO;
 
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
 public class MissionCommandServiceImpl implements MissionCommandService {
 
     private final MissionRepository missionRepository;
-    private final StoreCommandService storeCommandService;
-    private final MemberCommandService memberCommandService;
+    private final StoreQueryService storeQueryService;
+    private final MemberQueryService memberQueryService;
+    private final MissionQueryService missionQueryService;
     @Override
-    @Transactional
     public Mission createMission(MissionRequestDTO.CreateMissionDTO request) {
 
-        Store store =  storeCommandService.loadEntity(request.getStoreId());
+        Store store =  storeQueryService.loadEntity(request.getStoreId());
 
         Mission newMission = MissionConverter.toMission(request);
         newMission.setMission(store);
@@ -38,10 +37,9 @@ public class MissionCommandServiceImpl implements MissionCommandService {
     }
 
     @Override
-    @Transactional
     public MemberMission challengeMission(Long memberId, Long missionId) {
-        Member member = memberCommandService.loadEntity(memberId);
-        Mission mission = loadEntity(missionId);
+        Member member = memberQueryService.loadEntity(memberId);
+        Mission mission = missionQueryService.loadEntity(missionId);
         MemberMission newMemberMission = MemberMissionConverter.toMemberMission(mission);
 
         // 미션 진행 여부 확인
@@ -54,11 +52,5 @@ public class MissionCommandServiceImpl implements MissionCommandService {
         newMemberMission.setMember(member);
 
         return newMemberMission;
-    }
-    @Override
-    public Mission loadEntity(Long missionId) {
-        return missionRepository.findById(missionId).orElseThrow(
-                () -> new MissionHandler(ErrorStatus.MISSION_NOT_FOUND)
-        );
     }
 }

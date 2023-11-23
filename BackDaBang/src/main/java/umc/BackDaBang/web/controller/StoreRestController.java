@@ -15,8 +15,8 @@ import umc.BackDaBang.apiPayload.ApiResponse;
 import umc.BackDaBang.converter.StoreConverter;
 import umc.BackDaBang.domain.Review;
 import umc.BackDaBang.domain.Store;
-import umc.BackDaBang.service.ReviewService.ReviewCommandService;
 import umc.BackDaBang.service.StoreService.StoreCommandService;
+import umc.BackDaBang.service.StoreService.StoreQueryService;
 import umc.BackDaBang.validation.annotation.ExistStore;
 import umc.BackDaBang.web.dto.Store.StoreRequestDTO;
 import umc.BackDaBang.web.dto.Store.StoreResponseDTO;
@@ -27,6 +27,7 @@ import umc.BackDaBang.web.dto.Store.StoreResponseDTO;
 public class StoreRestController {
 
     private final StoreCommandService storeCommandService;
+    private final StoreQueryService storeQueryService;
     @PostMapping("/")
     public ApiResponse<StoreResponseDTO.EnrollResultDTO> enroll(@RequestBody @Valid
                                                                 StoreRequestDTO.EnrollDTO request) {
@@ -54,7 +55,7 @@ public class StoreRestController {
             @Parameter(name = "page", description = "페이지 번호, 0번이 1 페이지 입니다."),
     })
     public ApiResponse<StoreResponseDTO.StoreReviewPreViewListDTO> getReviewList(@ExistStore @PathVariable(name = "storeId") Long storeId, @RequestParam(name = "page") Integer page){
-        Page<Review> reviewList = storeCommandService.getReviewList(storeId,page);
+        Page<Review> reviewList = storeQueryService.getReviewList(storeId,page);
         return ApiResponse.onSuccess(StoreConverter.toStoreReviewPreViewListDTO(reviewList));
     }
 }
