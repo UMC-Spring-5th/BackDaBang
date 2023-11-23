@@ -27,8 +27,6 @@ import umc.BackDaBang.web.dto.Store.StoreResponseDTO;
 public class StoreRestController {
 
     private final StoreCommandService storeCommandService;
-    private final ReviewCommandService reviewCommandService;
-
     @PostMapping("/")
     public ApiResponse<StoreResponseDTO.EnrollResultDTO> enroll(@RequestBody @Valid
                                                                 StoreRequestDTO.EnrollDTO request) {
