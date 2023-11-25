@@ -22,11 +22,11 @@ public class MemberMission extends BaseEntity {
     private Boolean isSuccess;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn
+    @JoinColumn(name = "member_id")
     private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn
+    @JoinColumn(name = "mission_id")
     private Mission mission;
 
     public void setMember(Member member) {
@@ -42,4 +42,6 @@ public class MemberMission extends BaseEntity {
         this.mission = mission;
         mission.getMemberMissionList().add(this);
     }
+
+
 }

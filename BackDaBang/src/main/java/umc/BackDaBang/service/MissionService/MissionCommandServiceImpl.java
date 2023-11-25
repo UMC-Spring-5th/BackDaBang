@@ -12,16 +12,20 @@ import umc.BackDaBang.domain.Member;
 import umc.BackDaBang.domain.Mission;
 import umc.BackDaBang.domain.Store;
 import umc.BackDaBang.domain.mapping.MemberMission;
+import umc.BackDaBang.repository.MemberMissionRepository;
 import umc.BackDaBang.repository.MissionRepository;
 import umc.BackDaBang.service.MemberService.MemberQueryService;
 import umc.BackDaBang.service.StoreService.StoreQueryService;
 import umc.BackDaBang.web.dto.Mission.MissionRequestDTO;
+
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
 public class MissionCommandServiceImpl implements MissionCommandService {
 
     private final MissionRepository missionRepository;
+    private final MemberMissionRepository memberMissionRepository;
     private final StoreQueryService storeQueryService;
     private final MemberQueryService memberQueryService;
     private final MissionQueryService missionQueryService;
@@ -46,11 +50,11 @@ public class MissionCommandServiceImpl implements MissionCommandService {
         member.getMemberMissionList()
                 .forEach(
                         memberMission -> {
-                            if(memberMission.equals(newMemberMission)) throw new MissionHandler(ErrorStatus.MEMBER_MISSION_EXIST);
+                            if(memberMission.getMission().getId().equals(mission.getId())) throw new MissionHandler(ErrorStatus.MEMBER_MISSION_EXIST);
                         });
 
         newMemberMission.setMember(member);
 
-        return newMemberMission;
+        return memberMissionRepository.save(newMemberMission);
     }
 }

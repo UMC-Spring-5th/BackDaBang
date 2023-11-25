@@ -27,7 +27,7 @@ public class MissionRestController {
         return ApiResponse.onSuccess(MissionConverter.toCreateMissionResultDTO(mission));
     }
 
-    @PatchMapping("/challenge")
+    @PostMapping("/challenge")
     public ApiResponse<MissionResponseDTO.ChallengeMissionDTO> challengeMission(
             @RequestParam Long memberId,
             @RequestParam Long missionId) {

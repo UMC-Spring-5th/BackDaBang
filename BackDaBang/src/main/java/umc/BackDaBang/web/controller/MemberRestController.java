@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import umc.BackDaBang.apiPayload.ApiResponse;
 import umc.BackDaBang.converter.MemberConverter;
 import umc.BackDaBang.domain.Member;
+import umc.BackDaBang.domain.Mission;
 import umc.BackDaBang.domain.Review;
 import umc.BackDaBang.service.MemberService.MemberCommandService;
 import umc.BackDaBang.service.MemberService.MemberQueryService;
@@ -40,5 +41,17 @@ public class MemberRestController {
 
         Page<Review> reviewList = memberQueryService.getReviewList(memberId, page);
         return ApiResponse.onSuccess(MemberConverter.toMemberReviewListDTO(reviewList));
+    }
+
+    @Operation(summary = "특정 멤버가 도전중인 미션 리스트 조회 API", description = "해당 멤버의 도전중인 미션 리스트를 페이징을 통해 받아옵니다. query String으로 페이지 번호를 주세요.")
+    @Parameters({
+            @Parameter(name = "memberId", description = "memberId request param입니다."),
+            @Parameter(name = "page",description = "page 번호, 0번이 1 페이지 입니다.")
+    })
+    @GetMapping("/missions")
+    public ApiResponse<MemberResponseDTO.MemberMissionListDTO> getMissionList(@RequestParam(name="memberId") Long memberId,
+                                                                              @RequestParam(name="page") Integer page) {
+        Page<Mission> missionList = memberQueryService.getMissionList(memberId, page);
+        return ApiResponse.onSuccess(MemberConverter.toMemberMissionListDTO(missionList));
     }
 }

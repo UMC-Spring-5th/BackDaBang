@@ -2,6 +2,7 @@ package umc.BackDaBang.converter;
 
 import org.springframework.data.domain.Page;
 import umc.BackDaBang.domain.Member;
+import umc.BackDaBang.domain.Mission;
 import umc.BackDaBang.domain.Review;
 import umc.BackDaBang.domain.enums.Gender;
 import umc.BackDaBang.web.dto.Member.MemberRequestDTO;
@@ -58,5 +59,29 @@ public class MemberConverter {
                 .totalElements(reviewList.getTotalElements())
                 .build();
 
+    }
+
+    public static MemberResponseDTO.MemberMissionDTO toMemberMissionDTO(Mission mission) {
+        return MemberResponseDTO.MemberMissionDTO.builder()
+                .title(mission.getTitle())
+                .content(mission.getContent())
+                .deadline(mission.getDeadline())
+                .point(mission.getPoint())
+                .createdAt(mission.getCreatedAt())
+                .build();
+    }
+
+    public static MemberResponseDTO.MemberMissionListDTO toMemberMissionListDTO(Page<Mission> missionList) {
+        List<MemberResponseDTO.MemberMissionDTO> memberMissionDTOList = missionList.stream()
+                .map(MemberConverter::toMemberMissionDTO).toList();
+
+        return MemberResponseDTO.MemberMissionListDTO.builder()
+                .missionList(memberMissionDTOList)
+                .isFirst(missionList.isFirst())
+                .isLast(missionList.isLast())
+                .listSize(memberMissionDTOList.size())
+                .totalElements(missionList.getTotalElements())
+                .totalPage(missionList.getTotalPages())
+                .build();
     }
 }
