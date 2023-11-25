@@ -13,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 import umc.BackDaBang.apiPayload.ApiResponse;
 import umc.BackDaBang.converter.StoreConverter;
+import umc.BackDaBang.domain.Mission;
 import umc.BackDaBang.domain.Review;
 import umc.BackDaBang.domain.Store;
 import umc.BackDaBang.service.StoreService.StoreCommandService;
@@ -57,5 +58,20 @@ public class StoreRestController {
     public ApiResponse<StoreResponseDTO.StoreReviewPreViewListDTO> getReviewList(@ExistStore @PathVariable(name = "storeId") Long storeId, @RequestParam(name = "page") Integer page){
         Page<Review> reviewList = storeQueryService.getReviewList(storeId,page);
         return ApiResponse.onSuccess(StoreConverter.toStoreReviewPreViewListDTO(reviewList));
+    }
+
+    @Operation(summary = "특정 가게의 미션 목록 조회 API", description = "특정 가게의 미션 목록을 조회하는 API이며, 페이징을 포함합니다. query string으로 page 번호를 주세요.")
+    @GetMapping("/{storeId}/missions")
+    @Parameters({
+            @Parameter(name="storeId", description = "가게의 아이디, path variable 입니다."),
+            @Parameter(name="page", description = "페이지 번호, 0번이 1페이지입니다.")
+    })
+    public ApiResponse<StoreResponseDTO.StoreMissionListDTO> getMissionList(@ExistStore @PathVariable(name = "storeId") Long storeId,
+                                                                            @RequestParam(name="page") Integer page) {
+
+        Page<Mission> missionList = storeQueryService.getMissionList(storeId,page);
+
+        return ApiResponse.onSuccess(StoreConverter.toStoreMissionListDTO(missionList));
+
     }
 }

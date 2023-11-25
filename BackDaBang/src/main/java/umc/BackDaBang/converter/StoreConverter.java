@@ -2,6 +2,7 @@ package umc.BackDaBang.converter;
 
 
 import org.springframework.data.domain.Page;
+import umc.BackDaBang.domain.Mission;
 import umc.BackDaBang.domain.Review;
 import umc.BackDaBang.domain.Store;
 import umc.BackDaBang.web.dto.Store.StoreRequestDTO;
@@ -46,7 +47,7 @@ public class StoreConverter {
     public static StoreResponseDTO.StoreReviewPreViewListDTO toStoreReviewPreViewListDTO(Page<Review> reviewList){
 
         List<StoreResponseDTO.StoreReviewPreViewDTO> storeReviewPreViewDTOList = reviewList.stream()
-                .map(StoreConverter::toStoreReviewPreViewDTO).collect(Collectors.toList());
+                .map(StoreConverter::toStoreReviewPreViewDTO).toList();
 
         return StoreResponseDTO.StoreReviewPreViewListDTO.builder()
                 .isLast(reviewList.isLast())
@@ -55,6 +56,30 @@ public class StoreConverter {
                 .totalElements(reviewList.getTotalElements())
                 .listSize(storeReviewPreViewDTOList.size())
                 .reviewList(storeReviewPreViewDTOList)
+                .build();
+    }
+
+    public static StoreResponseDTO.StoreMissionDTO toStoreMissionDTO(Mission mission) {
+        return StoreResponseDTO.StoreMissionDTO.builder()
+                .title(mission.getTitle())
+                .content(mission.getContent())
+                .deadline(mission.getDeadline())
+                .point((mission.getPoint()))
+                .createdAt(mission.getCreatedAt())
+                .build();
+    }
+
+    public static StoreResponseDTO.StoreMissionListDTO toStoreMissionListDTO (Page<Mission> missionList) {
+        List<StoreResponseDTO.StoreMissionDTO> storeMissionDTOList = missionList.stream().map(
+                StoreConverter::toStoreMissionDTO).toList();
+
+        return StoreResponseDTO.StoreMissionListDTO.builder()
+                .missionList(storeMissionDTOList)
+                .isFirst(missionList.isFirst())
+                .isLast(missionList.isLast())
+                .listSize(storeMissionDTOList.size())
+                .totalElements(missionList.getTotalElements())
+                .totalPage(missionList.getTotalPages())
                 .build();
     }
 }
