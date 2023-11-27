@@ -21,4 +21,11 @@ public class MemberMissionConverter {
                 .missionId(memberMission.getMission().getId())
                 .build();
     }
+
+    public static MissionResponseDTO.CompleteMissionDTO toCompleteMissionDTO(MemberMission memberMission) {
+        return MissionResponseDTO.CompleteMissionDTO.builder()
+                .memberId(memberMission.getMember().getId())
+                .missionId(memberMission.getMission().getId())
+                .build();
+    }
 }

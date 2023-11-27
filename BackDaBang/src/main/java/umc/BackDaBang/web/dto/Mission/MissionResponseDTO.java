@@ -26,4 +26,13 @@ public class MissionResponseDTO {
         Long missionId;
         Long memberId;
     }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class CompleteMissionDTO {
+        Long missionId;
+        Long memberId;
+    }
 }

@@ -29,10 +29,11 @@ public enum ErrorStatus implements BaseErrorCode {
     FOOD_TYPE_NOT_FOUND(HttpStatus.NOT_FOUND, "FOODTYPE4001", "해당 음식종류가 없습니다."),
     //Mission 관련 에러
     MISSION_NOT_FOUND(HttpStatus.NOT_FOUND, "MISSION4001", "미션이 없습니다."),
+    INVALID_MISSION_AUTHORIZATION_CODE(HttpStatus.BAD_REQUEST,"MISSION4002", "인증코드가 올바르지 않습니다."),
     //MEMBERMISSION 관련 에러
     MEMBER_MISSION_EXIST(HttpStatus.BAD_REQUEST,"MEMBERMISSION4001", "이미 도전 중이거나, 수행완료한 미션입니다."),
-
-
+    MEMBER_MISSION_NOT_EXIST(HttpStatus.BAD_REQUEST,"MEMBERMISSION4002", "해당 미션을 도전하지 않았습니다."),
+    MEMBER_MISSION_ALREADY_COMPLETE(HttpStatus.BAD_REQUEST, "MEMBERMISSION4003", "이미 수행 완료한 미션입니다."),
     //Page 관련 에러
     PAGE_INVALID(HttpStatus.BAD_REQUEST, "PAGE4001", "페이지는 0보다 커야합니다."),
     // For test

@@ -1,6 +1,9 @@
 package umc.BackDaBang.web.controller;
 
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -34,5 +37,22 @@ public class MissionRestController {
 
         MemberMission memberMission = missionCommandService.challengeMission(memberId, missionId);
         return ApiResponse.onSuccess(MemberMissionConverter.toChallengeMissionDTO(memberMission));
+    }
+
+
+    @Operation(summary = "진행중인 미션 진행 완료로 바꾸기 API",description = "진행 중인 미션을 진행 완료로 바꾸는 미션입니다.")
+    @Parameters({
+            @Parameter(name = "memberId", description = "memberId request param입니다."),
+            @Parameter(name = "missionId", description = "missionId request param입니다."),
+            @Parameter(name = "authorizationCode",description = "authrizationCode request param입니다.")
+    })
+    @PostMapping("/complete")
+    public ApiResponse<MissionResponseDTO.CompleteMissionDTO> completeMission (
+            @RequestParam Long memberId,
+            @RequestParam Long missionId,
+            @RequestParam String authorizationCode
+            ) {
+        MemberMission memberMission = missionCommandService.CompleteMission(memberId,missionId,authorizationCode);
+        return ApiResponse.onSuccess(MemberMissionConverter.toCompleteMissionDTO(memberMission));
     }
 }

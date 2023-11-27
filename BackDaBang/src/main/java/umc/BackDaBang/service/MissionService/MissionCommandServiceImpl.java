@@ -18,10 +18,10 @@ import umc.BackDaBang.service.MemberService.MemberQueryService;
 import umc.BackDaBang.service.StoreService.StoreQueryService;
 import umc.BackDaBang.web.dto.Mission.MissionRequestDTO;
 
-import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class MissionCommandServiceImpl implements MissionCommandService {
 
     private final MissionRepository missionRepository;
@@ -29,6 +29,8 @@ public class MissionCommandServiceImpl implements MissionCommandService {
     private final StoreQueryService storeQueryService;
     private final MemberQueryService memberQueryService;
     private final MissionQueryService missionQueryService;
+
+
     @Override
     public Mission createMission(MissionRequestDTO.CreateMissionDTO request) {
 
@@ -56,5 +58,27 @@ public class MissionCommandServiceImpl implements MissionCommandService {
         newMemberMission.setMember(member);
 
         return memberMissionRepository.save(newMemberMission);
+    }
+
+    @Override
+    public MemberMission CompleteMission(Long memberId, Long missionId,String authorizationCode) {
+        Member member = memberQueryService.loadEntity(memberId);
+        Mission mission = missionQueryService.loadEntity(missionId);
+
+        //진행 중인 미션인지 check
+        MemberMission memberMission = memberMissionRepository.findByMemberAndMission(member, mission)
+                .orElseThrow(() -> new MissionHandler(ErrorStatus.MEMBER_MISSION_NOT_EXIST));
+
+        //이미 진행 완료된 미션인지 check
+        if(!memberMission.getIsSuccess().equals(Boolean.FALSE))
+            throw new MissionHandler(ErrorStatus.MEMBER_MISSION_ALREADY_COMPLETE);
+
+        //인증코드가 일치하는지 check
+        if(!mission.getAuthorizationCode().equals(authorizationCode))
+            throw new MissionHandler(ErrorStatus.INVALID_MISSION_AUTHORIZATION_CODE);
+
+        memberMission.setIsSuccess(Boolean.TRUE);
+
+        return memberMission;
     }
 }

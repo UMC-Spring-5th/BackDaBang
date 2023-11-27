@@ -8,4 +8,5 @@ import umc.BackDaBang.web.dto.Mission.MissionRequestDTO;
 public interface MissionCommandService{
     Mission createMission(MissionRequestDTO.CreateMissionDTO request);
     MemberMission challengeMission(Long memberId, Long missionId);
+    MemberMission CompleteMission(Long memberId, Long missionId,String authorizationCode);
 }

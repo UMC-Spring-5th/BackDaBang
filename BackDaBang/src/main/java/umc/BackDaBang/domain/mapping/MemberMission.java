@@ -43,5 +43,9 @@ public class MemberMission extends BaseEntity {
         mission.getMemberMissionList().add(this);
     }
 
+    public void setIsSuccess(Boolean isSuccess) {
+        this.isSuccess = isSuccess;
+    }
+
 
 }
