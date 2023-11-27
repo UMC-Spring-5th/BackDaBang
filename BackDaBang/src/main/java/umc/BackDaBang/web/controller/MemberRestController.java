@@ -14,6 +14,7 @@ import umc.BackDaBang.domain.Mission;
 import umc.BackDaBang.domain.Review;
 import umc.BackDaBang.service.MemberService.MemberCommandService;
 import umc.BackDaBang.service.MemberService.MemberQueryService;
+import umc.BackDaBang.validation.annotation.CheckPage;
 import umc.BackDaBang.web.dto.Member.MemberRequestDTO;
 import umc.BackDaBang.web.dto.Member.MemberResponseDTO;
 
@@ -37,7 +38,7 @@ public class MemberRestController {
     })
     @GetMapping("/reviews")
     public ApiResponse<MemberResponseDTO.MemberReviewListDTO> getReviewList(@RequestParam(name="memberId") Long memberId,
-                                                                            @RequestParam(name="page") Integer page) {
+                                                                            @CheckPage @RequestParam(name="page") Integer page) {
 
         Page<Review> reviewList = memberQueryService.getReviewList(memberId, page);
         return ApiResponse.onSuccess(MemberConverter.toMemberReviewListDTO(reviewList));
@@ -50,8 +51,10 @@ public class MemberRestController {
     })
     @GetMapping("/missions")
     public ApiResponse<MemberResponseDTO.MemberMissionListDTO> getMissionList(@RequestParam(name="memberId") Long memberId,
-                                                                              @RequestParam(name="page") Integer page) {
+                                                                              @CheckPage @RequestParam(name="page") Integer page) {
         Page<Mission> missionList = memberQueryService.getMissionList(memberId, page);
         return ApiResponse.onSuccess(MemberConverter.toMemberMissionListDTO(missionList));
     }
+
+
 }
