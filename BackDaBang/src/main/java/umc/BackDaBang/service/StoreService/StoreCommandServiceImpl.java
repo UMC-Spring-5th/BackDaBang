@@ -23,6 +23,8 @@ public class StoreCommandServiceImpl implements StoreCommandService {
     private final StoreRepository storeRepository;
     private final StoreQueryService storeQueryService;
     private final RegionCommandService regionCommandService;
+
+
     @Override
     @Transactional
     public Store enroll(StoreRequestDTO.EnrollDTO request) {
@@ -35,9 +37,9 @@ public class StoreCommandServiceImpl implements StoreCommandService {
 
     @Override
     @Transactional
-    public Store enrollRegion(StoreRequestDTO.EnrollRegionDTO request) {
-        Store store = storeQueryService.loadEntity(request.getStoreId());
-        Region region = regionCommandService.loadEntity(request.getRegionId());
+    public Store enrollRegion(Long storeId, Long regionId) {
+        Store store = storeQueryService.loadEntity(storeId);
+        Region region = regionCommandService.loadEntity(regionId);
 
         store.setRegion(region);
         return store;

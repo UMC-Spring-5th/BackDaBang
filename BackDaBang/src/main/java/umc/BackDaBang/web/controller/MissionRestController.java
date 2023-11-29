@@ -22,6 +22,9 @@ import umc.BackDaBang.web.dto.Mission.MissionResponseDTO;
 public class MissionRestController {
 
     private final MissionCommandService missionCommandService;
+
+
+    @Operation(summary = "미션 생성 API", description = "미션 생성 API입니다.")
     @PostMapping("/")
     public ApiResponse<MissionResponseDTO.CreateMissionResultDTO> createMission (
             @RequestBody @Valid MissionRequestDTO.CreateMissionDTO request) {
@@ -30,6 +33,11 @@ public class MissionRestController {
         return ApiResponse.onSuccess(MissionConverter.toCreateMissionResultDTO(mission));
     }
 
+    @Operation(summary = "미션을 도전하는 API", description = "미션을 도전하는 API입니다. memberId와 missionId를 query string으로 주세요.")
+    @Parameters({
+            @Parameter(name = "memberId", description = "memberId 입니다."),
+            @Parameter(name = "missionId",description = "missionId 입니다.")
+    })
     @PostMapping("/challenge")
     public ApiResponse<MissionResponseDTO.ChallengeMissionDTO> challengeMission(
             @RequestParam Long memberId,
@@ -46,7 +54,8 @@ public class MissionRestController {
             @Parameter(name = "missionId", description = "missionId request param입니다."),
             @Parameter(name = "authorizationCode",description = "authrizationCode request param입니다.")
     })
-    @PostMapping("/complete")
+
+    @PatchMapping("/complete")
     public ApiResponse<MissionResponseDTO.CompleteMissionDTO> completeMission (
             @RequestParam Long memberId,
             @RequestParam Long missionId,

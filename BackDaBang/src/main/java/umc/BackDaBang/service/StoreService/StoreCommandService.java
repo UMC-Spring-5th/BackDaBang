@@ -8,7 +8,7 @@ import umc.BackDaBang.web.dto.Store.StoreRequestDTO;
 
 public interface StoreCommandService  {
     Store enroll(StoreRequestDTO.EnrollDTO request);
-    Store enrollRegion(StoreRequestDTO.EnrollRegionDTO request);
+    Store enrollRegion(Long storeId, Long regionId);
     boolean existsById(Long storeId);
 
     }

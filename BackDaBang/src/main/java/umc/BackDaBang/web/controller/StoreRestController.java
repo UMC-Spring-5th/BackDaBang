@@ -30,6 +30,9 @@ public class StoreRestController {
 
     private final StoreCommandService storeCommandService;
     private final StoreQueryService storeQueryService;
+
+
+    @Operation(summary = "가게를 등록하는 API", description = "가게를 등록하는 API입니다.")
     @PostMapping("/")
     public ApiResponse<StoreResponseDTO.EnrollResultDTO> enroll(@RequestBody @Valid
                                                                 StoreRequestDTO.EnrollDTO request) {
@@ -37,10 +40,16 @@ public class StoreRestController {
 
         return ApiResponse.onSuccess(StoreConverter.toEnrollResultDTO(store));
     }
-    @PostMapping("/region")
-    public ApiResponse<StoreResponseDTO.EnrollRegionResultDTO> enrollRegion(@RequestBody @Valid
-                                                                      StoreRequestDTO.EnrollRegionDTO request) {
-        Store store = storeCommandService.enrollRegion(request);
+
+    @Operation(summary = "가게에 region을 연결하는 API", description = "지역과 가게를 연결합니다.")
+    @Parameters({
+            @Parameter(name="storeId", description = "가게의 아이디, path variable 입니다."),
+            @Parameter(name="regionId", description = "지역 아이디, request param 입니다.")
+    })
+    @PatchMapping("/{storeId}/region")
+    public ApiResponse<StoreResponseDTO.EnrollRegionResultDTO> enrollRegion(@ExistStore @PathVariable(name="storeId") Long storeId,
+                                                                            @RequestParam(name="regionId") Long regionId) {
+        Store store = storeCommandService.enrollRegion(storeId,regionId);
         return ApiResponse.onSuccess(StoreConverter.toEnrollRegionResultDTO(store));
     }
 

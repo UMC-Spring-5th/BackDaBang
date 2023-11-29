@@ -24,6 +24,9 @@ import umc.BackDaBang.web.dto.Member.MemberResponseDTO;
 public class MemberRestController {
     private final MemberCommandService memberCommandService;
     private final MemberQueryService memberQueryService;
+
+
+    @Operation(summary = "회원 가입 API", description = "회원가입 API입니다.")
     @PostMapping("/")
     public ApiResponse<MemberResponseDTO.JoinResultDTO> join(@RequestBody @Valid MemberRequestDTO.JoinDto request){
         Member member = memberCommandService.joinMember(request);
