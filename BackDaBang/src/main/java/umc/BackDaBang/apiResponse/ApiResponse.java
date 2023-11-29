@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import umc.BackDaBang.apiResponse.code.BaseCode;
+import umc.BackDaBang.apiResponse.code.status.SuccessStatus;
 
 @Getter
 @AllArgsConstructor
@@ -16,6 +18,16 @@ public class ApiResponse<T> {
     private final Boolean isSuccess;
     private final String code;
     private final String message;
+
+    // 성공한 경우 응답 생성
+    public static <T> ApiResponse<T> onSuccess(T result) {
+        return new ApiResponse<>(true, SuccessStatus._OK.getCode(), SuccessStatus._OK.getCode(), result);
+    }
+
+    public static <T> ApiResponse<T> of(BaseCode code, T result) {
+        return new ApiResponse<>(true, code.getReasonHttpStatus().getCode(), code.getReasonHttpStatus().getMessage(),
+                result);
+    }
 
     /*
     Include.NON_NULL : @JsonInclude 애너테이션에서 사용되며, JSON으로 직렬화할 때, 'null' 값인 필드를 제외하는 기능.
