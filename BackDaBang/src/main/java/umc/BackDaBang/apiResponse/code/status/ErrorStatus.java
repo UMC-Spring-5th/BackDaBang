@@ -22,8 +22,8 @@ public enum ErrorStatus implements BaseErrorCode {
 
 
     private final HttpStatus httpStatus;    // 1XX, 2xx 등... 숫자 코드
-    private final String code;
-    private final String message;
+    private final String code;              // HTTP status에 대한 더 세부적인 응답 상황을 알려주기 위한 필드
+    private final String message;           // code에 추가적인 정보
 
     @Override
     public ErrorReasonDTO getReason() {
