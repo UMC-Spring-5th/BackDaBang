@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import umc.BackDaBang.apiPayload.ApiResponse;
 import umc.BackDaBang.converter.TempConverter;
+import umc.BackDaBang.service.TempService.TempQueryService;
 import umc.BackDaBang.web.dto.TempResponse;
 
 /*
@@ -18,6 +19,8 @@ import umc.BackDaBang.web.dto.TempResponse;
 @RequiredArgsConstructor
 public class TempRestController {
 
+    private final TempQueryService tempQueryService;
+
     @GetMapping("/test")
     public ApiResponse<TempResponse.TempTestDTO> testAPI() {
         return ApiResponse.onSuccess(TempConverter.toTempTestDTO());
@@ -25,7 +28,8 @@ public class TempRestController {
 
     @GetMapping("/exception")
     public ApiResponse<TempResponse.TempExceptionDTO> exceptionAPI(@RequestParam Integer flag) {
-        return null;
+        tempQueryService.CheckFlag(flag);
+        return ApiResponse.onSuccess(TempConverter.toTempExceptionDTO(flag));
     }
 
 }
