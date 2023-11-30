@@ -2,8 +2,8 @@ package umc.BackDaBang.converter;
 
 import umc.BackDaBang.domain.Region;
 import umc.BackDaBang.domain.Store;
-import umc.BackDaBang.web.dto.StoreRequest;
-import umc.BackDaBang.web.dto.StoreResponse.GetStore;
+import umc.BackDaBang.web.dto.Store.StoreRequest;
+import umc.BackDaBang.web.dto.Store.StoreResponse.GetStore;
 
 public class StoreConverter {
     public static Store toStore(StoreRequest.CreateStore request, Region region) {

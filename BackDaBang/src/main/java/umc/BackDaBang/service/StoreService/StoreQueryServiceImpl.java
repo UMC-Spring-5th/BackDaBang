@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import umc.BackDaBang.converter.StoreConverter;
 import umc.BackDaBang.domain.Store;
 import umc.BackDaBang.repository.StoreRepository;
-import umc.BackDaBang.web.dto.StoreResponse.GetStore;
+import umc.BackDaBang.web.dto.Store.StoreResponse.GetStore;
 
 @Service
 @RequiredArgsConstructor

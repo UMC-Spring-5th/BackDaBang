@@ -8,11 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import umc.BackDaBang.apiPayload.ApiResponse;
-import umc.BackDaBang.domain.Store;
 import umc.BackDaBang.service.StoreService.StoreCommandService;
 import umc.BackDaBang.service.StoreService.StoreQueryService;
-import umc.BackDaBang.web.dto.StoreRequest;
-import umc.BackDaBang.web.dto.StoreResponse.GetStore;
+import umc.BackDaBang.web.dto.Store.StoreRequest;
+import umc.BackDaBang.web.dto.Store.StoreResponse.GetStore;
 
 @RestController
 @RequestMapping("/store")
@@ -25,8 +24,8 @@ public class StoreRestController {
     @PostMapping
     public ApiResponse<Long> createStoreAPI(@RequestBody StoreRequest.CreateStore request,
                                             @RequestParam String regionName) {
-        Store store = storeCommandService.createStore(request, regionName);
-        return ApiResponse.onSuccess(store.getId());
+
+        return ApiResponse.onSuccess(storeCommandService.createStore(request, regionName));
     }
 
     // StoreId를 통해 엔티티를 가져오는 메소드

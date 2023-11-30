@@ -1,9 +1,8 @@
 package umc.BackDaBang.service.StoreService;
 
-import umc.BackDaBang.domain.Store;
-import umc.BackDaBang.web.dto.StoreRequest.CreateStore;
+import umc.BackDaBang.web.dto.Store.StoreRequest.CreateStore;
 
 public interface StoreCommandService {
 
-    public Store createStore(CreateStore request, String regionName);
+    public Long createStore(CreateStore request, String regionName);
 }

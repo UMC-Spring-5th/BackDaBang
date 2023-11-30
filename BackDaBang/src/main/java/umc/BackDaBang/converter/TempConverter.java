@@ -1,6 +1,6 @@
 package umc.BackDaBang.converter;
 
-import umc.BackDaBang.web.dto.TempResponse;
+import umc.BackDaBang.web.dto.Temp.TempResponse;
 
 public class TempConverter {
 

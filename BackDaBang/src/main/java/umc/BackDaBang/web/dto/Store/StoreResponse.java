@@ -1,4 +1,4 @@
-package umc.BackDaBang.web.dto;
+package umc.BackDaBang.web.dto.Store;
 
 import lombok.Builder;
 import lombok.Getter;

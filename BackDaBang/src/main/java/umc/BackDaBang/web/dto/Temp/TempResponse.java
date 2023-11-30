@@ -1,4 +1,4 @@
-package umc.BackDaBang.web.dto;
+package umc.BackDaBang.web.dto.Temp;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
