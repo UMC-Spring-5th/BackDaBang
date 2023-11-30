@@ -1,4 +1,4 @@
-package umc.BackDaBang.apiPayload.exception.handler;
+package umc.BackDaBang.apiPayload.exception;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.ConstraintViolationException;

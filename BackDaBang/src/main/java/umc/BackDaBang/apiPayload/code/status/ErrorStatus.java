@@ -21,9 +21,10 @@ public enum ErrorStatus implements BaseErrorCode {
     NICKNAME_NOT_FOUND(HttpStatus.BAD_REQUEST, "MEMBER4002", "닉네임은 필수입니다."),
 
     // Article Error
-    ARTICLE_NOT_FOUND(HttpStatus.NOT_FOUND, "ARTICLE4001", "게시글이 없습니다.");
+    ARTICLE_NOT_FOUND(HttpStatus.NOT_FOUND, "ARTICLE4001", "게시글이 없습니다."),
 
-    // ~~~ 관련 응답 ....
+    // For test
+    TEMP_EXCEPTION(HttpStatus.BAD_REQUEST, "TEMP4001", "Error test message");
 
 
     private final HttpStatus httpStatus;    // 1XX, 2xx 등... 숫자 코드

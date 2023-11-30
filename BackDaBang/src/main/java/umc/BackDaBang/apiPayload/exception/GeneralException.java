@@ -1,4 +1,4 @@
-package umc.BackDaBang.apiPayload.exception.handler;
+package umc.BackDaBang.apiPayload.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
