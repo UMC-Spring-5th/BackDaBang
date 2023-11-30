@@ -1,10 +1,10 @@
-package umc.BackDaBang.apiResponse.code.status;
+package umc.BackDaBang.apiPayload.code.status;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
-import umc.BackDaBang.apiResponse.code.BaseErrorCode;
-import umc.BackDaBang.apiResponse.code.ErrorReasonDTO;
+import umc.BackDaBang.apiPayload.code.BaseErrorCode;
+import umc.BackDaBang.apiPayload.code.ErrorReasonDTO;
 
 @Getter
 @AllArgsConstructor

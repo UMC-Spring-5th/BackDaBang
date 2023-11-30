@@ -1,4 +1,4 @@
-package umc.BackDaBang.apiResponse.code;
+package umc.BackDaBang.apiPayload.code;
 
 public interface BaseErrorCode {
 

@@ -1,4 +1,4 @@
-package umc.BackDaBang.apiResponse;
+package umc.BackDaBang.apiPayload;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -6,8 +6,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import umc.BackDaBang.apiResponse.code.BaseCode;
-import umc.BackDaBang.apiResponse.code.status.SuccessStatus;
+import umc.BackDaBang.apiPayload.code.BaseCode;
+import umc.BackDaBang.apiPayload.code.status.SuccessStatus;
 
 @Getter
 @AllArgsConstructor
