@@ -24,6 +24,7 @@ import umc.BackDaBang.domain.common.BaseEntity;
 public class Review extends BaseEntity {
 
     @Id
+    // IDENTITY일 경우 하나에 한 개씩밖에 디비에 INSERT를 못함. 그래서 한 번에 여러 개를 처리하려면 AUTO를 통해 처리해야됨.
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
